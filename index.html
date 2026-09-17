@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Upek — Digital Profile</title>
+<meta name="description" content="A futuristic personal profile for Upek Randira Pathiraja — student, builder, anime fan and creator from Sri Lanka.">
+
+<!-- ===== ADDED: author + robots ===== -->
+<meta name="author" content="Upek Randira Pathiraja">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+<!-- ===== ADDED: canonical ===== -->
+<link rel="canonical" href="https://upekkk.github.io/">
+
+<!-- ===== ADDED: sitemap pointer (create sitemap.xml in the site root) ===== -->
+<link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏴‍☠️</text></svg>">
+
+<!-- ===== ADDED: apple touch icon ===== -->
+<link rel="apple-touch-icon" href="https://upekkk.github.io/avatar.jpg">
+
+<!-- ===== ADDED: mobile browser UI colour (dark + light, JS keeps one in sync) ===== -->
+<meta name="theme-color" content="#060812" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#eef1fa" media="(prefers-color-scheme: light)">
+<meta name="color-scheme" content="dark light">
+
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Upek — Digital Profile">
+<meta property="og:description" content="Student, builder, anime fan and creator — projects, skills and links, all in one futuristic profile.">
+<meta property="og:site_name" content="Upek.">
+
+<!-- ===== ADDED: og:url + og:image ===== -->
+<meta property="og:url" content="https://upekkk.github.io/">
+<!-- ⚠️ Replace with a real hosted 1200×630 banner image once you have one -->
+<meta property="og:image" content="https://upekkk.github.io/og-banner.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Upek Randira Pathiraja — student, builder and creator">
+<meta property="og:locale" content="en_US">
+
+<!-- ===== ADDED: profile OG extras ===== -->
+<meta property="profile:first_name" content="Upek Randira">
+<meta property="profile:last_name" content="Pathiraja">
+<meta property="profile:username" content="Upekkk">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Upek — Digital Profile">
+<meta name="twitter:description" content="Student, builder, anime fan and creator — projects, skills and links, all in one futuristic profile.">
+
+<!-- ===== ADDED: twitter image ===== -->
+<meta name="twitter:image" content="https://upekkk.github.io/og-banner.png">
+<meta name="twitter:image:alt" content="Upek Randira Pathiraja — student, builder and creator">
+<meta name="twitter:creator" content="@ridezawave">
+<meta name="twitter:site" content="@ridezawave">
+
+<!-- ===== ADDED: JSON-LD Person schema ===== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Upek Randira Pathiraja",
+  "alternateName": [
+    "Upek",
+    "Pathiraja Mudiyanselage Upek Randira Pathiraja",
+    "Upekkk"
+  ],
+  "givenName": "Upek Randira",
+  "familyName": "Pathiraja",
+  "nickname": "Upek",
+  "url": "https://upekkk.github.io/",
+  "mainEntityOfPage": "https://upekkk.github.io/",
+  "description": "Student, builder, anime fan and creator from Sri Lanka — websites, games, tools, robotics projects and anime.",
+  "jobTitle": "Student",
+  "email": "mailto:upekpathiraja325@gmail.com",
+  "image": "https://upekkk.github.io/avatar.jpg",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "LK",
+    "addressLocality": "Anuradhapura / Kurunegala",
+    "addressRegion": "Sri Lanka"
+  },
+  "knowsAbout": [
+    "Web development", "HTML", "CSS", "JavaScript", "Python",
+    "Arduino", "Robotics", "UI/UX design", "Animation"
+  ],
+  "knowsLanguage": ["English", "Sinhala"],
+  "sameAs": [
+    "https://github.com/Upekkk",
+    "https://x.com/ridezawave",
+    "https://www.youtube.com/@upvids",
+    "https://www.instagram.com/upekpathiraja/",
+    "https://www.tiktok.com/@upekpathiraja",
+    "https://anilist.co/user/Upek/",
+    "https://www.reddit.com/user/Intelligent-Win5053/"
+  ]
+}
+</script>
+
+<!-- ===== ADDED: theme bootstrap (runs before paint so there is no flash) ===== -->
+<script>
+(function(){
+  try{
+    var saved = localStorage.getItem('upek.theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    document.documentElement.setAttribute('data-theme', theme);
+  }catch(e){
+    document.documentElement.setAttribute('data-theme','dark');
+  }
+})();
+</script>
+
+<style>
+:root{
+  --bg:#060812; --bg2:#0a0d1b; --card:rgba(14,18,35,.62);
+  --line:rgba(255,255,255,.09); --text:#f5f7ff; --muted:#9ca6c5;
+  --blue:#5d8cff; --cyan:#52e4ff; --purple:#9b6cff;
+  --shadow:0 30px 100px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;
+  background:
+    radial-gradient(circle at 15% 10%,rgba(83,128,255,.15),transparent 30%),
+    radial-gradient(circle at 85% 25%,rgba(155,108,255,.13),transparent 30%),
+    radial-gradient(circle at 50% 100%,rgba(82,228,255,.08),transparent 32%),
+    var(--bg);
+  color:var(--text);overflow-x:hidden;line-height:1.6;
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.18;z-index:0;
+  background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:55px 55px;
+  mask-image:linear-gradient(to bottom,black,transparent 90%);
+  -webkit-mask-image:linear-gradient(to bottom,black,transparent 90%);
+}
+#particles{position:fixed;inset:0;z-index:0;pointer-events:none}
+.particle{position:absolute;width:2px;height:2px;border-radius:50%;background:#9db8ff;opacity:.5;animation:float linear infinite}
+@keyframes float{from{transform:translateY(105vh) translateX(0)}to{transform:translateY(-10vh) translateX(30px)}}
+.cursor{
+  position:fixed;width:360px;height:360px;border-radius:50%;
+  background:radial-gradient(circle,rgba(84,125,255,.09),transparent 65%);
+  transform:translate(-50%,-50%);pointer-events:none;z-index:1;
+}
+.wrap{width:min(1120px,calc(100% - 36px));margin:auto;position:relative;z-index:2}
+nav{
+  position:fixed;top:18px;left:50%;transform:translateX(-50%);
+  width:min(900px,calc(100% - 28px));height:62px;padding:8px 10px;
+  border:1px solid var(--line);background:rgba(7,10,22,.62);backdrop-filter:blur(20px);
+  border-radius:22px;display:flex;align-items:center;justify-content:space-between;
+  z-index:20;box-shadow:0 10px 50px rgba(0,0,0,.22);
+}
+.logo{font-weight:900;letter-spacing:-1px;font-size:20px;padding-left:12px}
+.logo span{color:var(--cyan)}
+.navlinks{display:flex;gap:5px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+.navlinks::-webkit-scrollbar{display:none}
+.navlinks a{color:#aeb7d4;text-decoration:none;font-size:13px;padding:10px 13px;border-radius:13px;transition:.25s;white-space:nowrap;flex:none}
+.navlinks a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.navlinks a.active{color:#fff;background:rgba(255,255,255,.09)}
+.navtoggle{
+  display:none;align-items:center;justify-content:center;width:38px;height:38px;margin-right:6px;
+  border:1px solid var(--line);border-radius:11px;background:rgba(255,255,255,.035);
+  color:#dfe5fa;cursor:pointer;flex:none;gap:4px;flex-direction:column
+}
+.navtoggle span{display:block;width:16px;height:1.5px;background:currentColor;transition:.25s}
+.navtoggle.open span:nth-child(1){transform:translateY(4.5px) rotate(45deg)}
+.navtoggle.open span:nth-child(2){opacity:0}
+.navtoggle.open span:nth-child(3){transform:translateY(-4.5px) rotate(-45deg)}
+.hero{min-height:100vh;display:grid;place-items:center;padding:150px 0 90px}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:40px;align-items:center;max-width:900px;margin:auto;text-align:center}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:9px;padding:8px 12px;border:1px solid var(--line);
+  border-radius:999px;background:rgba(255,255,255,.035);color:#b9c4e7;font-size:12px;
+}
+.dot{width:7px;height:7px;border-radius:50%;background:#55f0b2;box-shadow:0 0 15px #55f0b2}
+h1{font-size:clamp(58px,9vw,112px);line-height:.88;letter-spacing:-.075em;margin:25px 0}
+.gradient{background:linear-gradient(100deg,#fff 15%,#8eaeff 52%,#b48aff 90%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:18px;color:var(--muted);max-width:700px;margin:auto}
+.buttons{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap;justify-content:center}
+.btn{
+  text-decoration:none;color:#fff;padding:13px 18px;border-radius:15px;border:1px solid var(--line);
+  background:rgba(255,255,255,.05);transition:.25s;display:inline-flex;gap:9px;align-items:center;
+  font:inherit;font-size:14px;cursor:pointer;
+}
+.btn.primary{background:linear-gradient(135deg,#628cff,#8e62ff);border-color:transparent;box-shadow:0 12px 35px rgba(99,109,255,.25)}
+.btn:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,.25)}
+.btn:disabled{opacity:.55;cursor:progress;transform:none}
+.orb-center{position:absolute;inset:0;display:grid;place-items:center;text-align:center}
+.orb-center strong{font-size:72px;letter-spacing:-.08em}
+.orb-center small{display:block;color:#aab5da;letter-spacing:.18em;text-transform:uppercase;font-size:10px}
+section{padding:110px 0;scroll-margin-top:100px}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:35px}
+.kicker{font-size:11px;color:#7e8bb2;letter-spacing:.2em;text-transform:uppercase}
+h2{font-size:clamp(35px,5vw,58px);letter-spacing:-.055em;line-height:1;margin-top:8px}
+.section-head p{color:var(--muted);max-width:470px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card{
+  position:relative;overflow:hidden;border:1px solid var(--line);background:var(--card);
+  border-radius:24px;padding:25px;backdrop-filter:blur(16px);box-shadow:var(--shadow);
+  transition:transform .4s,border-color .4s;
+}
+.card:hover{transform:translateY(-7px);border-color:rgba(126,153,255,.3)}
+.card:after{content:"";position:absolute;inset:-1px;background:radial-gradient(circle at var(--x,50%) var(--y,0%),rgba(110,143,255,.13),transparent 28%);pointer-events:none}
+.icon{font-size:27px;margin-bottom:25px}
+.card h3{font-size:20px;margin-bottom:9px}.card p{color:var(--muted);font-size:14px}
+.card-banner{
+  height:140px;margin:-25px -25px 20px -25px;border-radius:24px 24px 0 0;position:relative;
+  overflow:hidden;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px
+}
+.card-banner .banner-icon{font-size:44px;filter:drop-shadow(0 6px 18px rgba(0,0,0,.45));position:relative;z-index:1}
+.card-banner .banner-label{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.75);position:relative;z-index:1}
+.card-banner:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 0%,rgba(255,255,255,.18),transparent 55%)}
+.banner-op{background:linear-gradient(155deg,#08213a 0%,#0f3f66 45%,#d99a2b 100%)}
+.banner-op:before{content:"";position:absolute;inset:0;opacity:.25;
+  background:repeating-linear-gradient(115deg,rgba(255,255,255,.5) 0 2px,transparent 2px 26px)}
+.banner-jjk{background:linear-gradient(155deg,#170a2b 0%,#3d1466 45%,#8b3ce0 100%)}
+.banner-jjk:before{content:"";position:absolute;inset:0;opacity:.3;
+  background:repeating-linear-gradient(70deg,rgba(180,120,255,.55) 0 3px,transparent 3px 22px)}
+.banner-pf{background:linear-gradient(155deg,#241141 0%,#5a2f8f 45%,#d4af37 100%)}
+.banner-pf:before{content:"";position:absolute;inset:0;opacity:.22;
+  background:repeating-radial-gradient(circle at 50% 120%,rgba(255,224,150,.5) 0 2px,transparent 2px 30px)}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
+.tag{font-size:11px;color:#b9c6e9;border:1px solid var(--line);padding:5px 8px;border-radius:999px;background:rgba(255,255,255,.025)}
+.about{display:grid;grid-template-columns:.9fr 1.1fr;gap:25px}
+.profile-card{min-height:440px;display:flex;flex-direction:column;justify-content:space-between}
+.big-number{font-size:100px;font-weight:900;letter-spacing:-.09em;line-height:.8}
+.quote{font-size:22px;line-height:1.35;color:#dfe5fa}
+.timeline{display:grid;gap:12px}
+.event{display:grid;grid-template-columns:120px 1fr;gap:22px;padding:18px 0;border-bottom:1px solid var(--line)}
+.event time{color:#7785aa;font-size:12px}.event h3{font-size:17px}.event p{color:var(--muted);font-size:13px;margin-top:3px}
+.project{min-height:260px;display:flex;flex-direction:column}
+.project .number{color:#65749c;font-size:11px;letter-spacing:.15em}
+.project h3{font-size:27px;margin-top:auto;margin-bottom:9px}
+.project a{color:#9eb7ff;text-decoration:none;font-size:13px}
+.skills{display:flex;flex-wrap:wrap;gap:10px}
+.skill{padding:12px 15px;border:1px solid var(--line);border-radius:14px;color:#d8def1;background:rgba(255,255,255,.025);transition:.25s}
+.skill:hover{transform:translateY(-4px);border-color:rgba(105,151,255,.35);background:rgba(90,120,255,.06)}
+footer{padding:80px 0 35px;text-align:center;color:#687492}
+footer strong{color:#aab6d5}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:none}
+
+.connections-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.connection-card{
+  display:flex;align-items:center;gap:16px;padding:18px;text-decoration:none;color:var(--text);
+  border:1px solid var(--line);background:var(--card);border-radius:20px;backdrop-filter:blur(16px);
+  transition:transform .35s,border-color .35s,background .35s;position:relative;overflow:hidden
+}
+.connection-card:before{content:"";position:absolute;width:170px;height:170px;border-radius:50%;
+  background:radial-gradient(circle,rgba(91,130,255,.13),transparent 70%);right:-80px;top:-80px;pointer-events:none}
+.connection-card:hover{transform:translateY(-5px);border-color:rgba(115,150,255,.4);background:rgba(18,23,45,.78)}
+.connection-icon{width:52px;height:52px;display:grid;place-items:center;border-radius:16px;flex:none;
+  border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.035)}
+.connection-icon svg{width:25px;height:25px;fill:currentColor}
+.discord-icon{color:#8995ff}.reddit-icon{color:#ff6b38}.youtube-icon{color:#ff5570}.x-icon{color:#e9edff}
+.github-icon{color:#e6ebff}.github-icon svg{width:26px;height:26px}
+.anilist-icon{color:#67a9ff;font-weight:900;font-size:13px;letter-spacing:-.05em}
+.instagram-icon{color:#ff8bc5}.tiktok-icon{color:#f3f5ff}
+
+.connection-info{display:flex;flex-direction:column;min-width:0}
+.connection-name{font-size:15px;font-weight:750}
+.connection-handle{font-size:12px;color:#818eaf;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.connection-arrow{margin-left:auto;color:#7584ad;font-size:18px;transition:.25s}
+.connection-card:hover .connection-arrow{color:#b9c8ff;transform:translate(3px,-3px)}
+.connection-note{
+  margin-top:14px;padding:18px;border:1px dashed rgba(255,255,255,.11);border-radius:18px;
+  display:flex;gap:14px;align-items:center;color:#a6b1cf;background:rgba(255,255,255,.018)
+}
+.connection-note>span{font-size:25px;color:#7899ff}.connection-note strong{color:#dce4fa;font-size:13px}
+.connection-note p{font-size:12px;color:#717e9f;margin-top:3px}
+@media(max-width:800px){.connections-grid{grid-template-columns:1fr}}
+
+@media(max-width:800px){
+  nav{height:56px}
+  .navlinks{display:none}
+  .navlinks.open{
+    display:flex;flex-direction:column;position:fixed;top:82px;left:50%;transform:translateX(-50%);
+    width:min(900px,calc(100% - 28px));border:1px solid var(--line);background:rgba(7,10,22,.92);
+    backdrop-filter:blur(20px);border-radius:18px;padding:8px;gap:2px;box-shadow:0 10px 50px rgba(0,0,0,.35)
+  }
+  .navlinks.open a{font-size:14px;padding:12px 14px;border-radius:12px}
+  .navtoggle{display:flex}
+  .hero-grid,.about{grid-template-columns:1fr}.hero{padding-top:130px}.hero-grid{gap:55px}
+  .grid{grid-template-columns:1fr}
+  section{padding:80px 0;scroll-margin-top:70px}.section-head{display:block}.section-head p{margin-top:18px}
+  .big-number{font-size:75px}.event{grid-template-columns:85px 1fr}
+}
+@media(max-width:470px){.wrap{width:min(100% - 24px,1120px)}h1{font-size:62px}}
+
+/* ==================================================================
+   ============ ADDED: extra theme tokens ============
+   ================================================================== */
+:root{
+  --line-strong:rgba(255,255,255,.16);
+  --ok:#55f0b2;
+  --err:#ff8f8f;
+  --warn:#ffd07a;
+}
+:root[data-theme="light"]{
+  --line-strong:rgba(14,24,60,.2);
+  --ok:#1f9e6d;
+  --err:#d64545;
+  --warn:#b8791a;
+}
+
+/* ==================================================================
+   ============ ADDED: light theme overrides ============
+   ================================================================== */
+:root[data-theme="light"]{
+  --bg:#eef1fa; --bg2:#ffffff;
+  --card:rgba(255,255,255,.78);
+  --line:rgba(14,24,60,.11);
+  --text:#0a1024; --muted:#5b6785;
+  --blue:#3565e0; --cyan:#0d8fb8; --purple:#7c3fd0;
+  --shadow:0 24px 70px rgba(30,50,120,.12);
+  color-scheme: light;
+}
+:root[data-theme="light"] body{
+  background:
+    radial-gradient(circle at 15% 10%,rgba(83,128,255,.18),transparent 34%),
+    radial-gradient(circle at 85% 25%,rgba(155,108,255,.15),transparent 34%),
+    radial-gradient(circle at 50% 100%,rgba(82,228,255,.18),transparent 36%),
+    var(--bg);
+}
+:root[data-theme="light"] body:before{
+  background-image:linear-gradient(rgba(14,24,60,.055) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(14,24,60,.055) 1px,transparent 1px);
+  opacity:.55;
+}
+:root[data-theme="light"] .particle{background:#5b7cf0}
+:root[data-theme="light"] .cursor{background:radial-gradient(circle,rgba(84,125,255,.12),transparent 65%)}
+:root[data-theme="light"] nav{background:rgba(255,255,255,.78);box-shadow:0 10px 40px rgba(30,50,120,.1)}
+:root[data-theme="light"] .navlinks a{color:#5b6785}
+:root[data-theme="light"] .navlinks a:hover{color:#0a1024;background:rgba(14,24,60,.06)}
+:root[data-theme="light"] .navlinks a.active{color:#0a1024;background:rgba(14,24,60,.09)}
+:root[data-theme="light"] .navlinks.open{background:rgba(255,255,255,.96)}
+:root[data-theme="light"] .navtoggle{color:#0a1024;background:rgba(14,24,60,.04)}
+:root[data-theme="light"] .eyebrow{color:#5b6785;background:rgba(14,24,60,.04)}
+:root[data-theme="light"] .gradient{background:linear-gradient(100deg,#0a1024 8%,#3f6bff 55%,#7c3fe0 92%);-webkit-background-clip:text;background-clip:text;color:transparent}
+:root[data-theme="light"] .btn{color:#0a1024;background:rgba(14,24,60,.045)}
+:root[data-theme="light"] .btn:hover{box-shadow:0 12px 30px rgba(30,50,120,.14)}
+:root[data-theme="light"] .btn.primary{color:#fff}
+:root[data-theme="light"] .card{box-shadow:var(--shadow)}
+:root[data-theme="light"] .quote{color:#0a1024}
+:root[data-theme="light"] .event time{color:#7b87a8}
+:root[data-theme="light"] .skill{color:#0a1024;background:rgba(14,24,60,.035)}
+:root[data-theme="light"] .project .number{color:#7b87a8}
+:root[data-theme="light"] .tag{color:#5b6785;background:rgba(14,24,60,.035)}
+:root[data-theme="light"] .connection-card{background:rgba(255,255,255,.78);color:#0a1024}
+:root[data-theme="light"] .connection-card:hover{background:rgba(255,255,255,.96)}
+:root[data-theme="light"] .connection-icon{background:rgba(14,24,60,.04);border-color:rgba(14,24,60,.1)}
+:root[data-theme="light"] .connection-handle{color:#5b6785}
+:root[data-theme="light"] .connection-arrow{color:#7b87a8}
+:root[data-theme="light"] .x-icon,
+:root[data-theme="light"] .github-icon,
+:root[data-theme="light"] .tiktok-icon{color:#0a1024}
+:root[data-theme="light"] .discord-icon{color:#5865f2}
+:root[data-theme="light"] .youtube-icon{color:#e0223c}
+:root[data-theme="light"] .instagram-icon{color:#d6336c}
+:root[data-theme="light"] .reddit-icon{color:#ff4500}
+:root[data-theme="light"] .anilist-icon{color:#3565e0}
+:root[data-theme="light"] footer{color:#7b87a8}
+:root[data-theme="light"] footer strong{color:#0a1024}
+:root[data-theme="light"] .kicker{color:#7b87a8}
+:root[data-theme="light"] .section-head p{color:#5b6785}
+:root[data-theme="light"] .card p{color:#5b6785}
+:root[data-theme="light"] .event p{color:#5b6785}
+:root[data-theme="light"] .hero p{color:#5b6785}
+
+/* ==================================================================
+   ============ ADDED: theme toggle button ============
+   ================================================================== */
+.theme-toggle{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:38px;height:38px;flex:none;margin-right:6px;
+  border:1px solid var(--line);border-radius:11px;
+  background:rgba(255,255,255,.035);color:var(--text);
+  cursor:pointer;font-size:15px;line-height:1;padding:0;
+  transition:.25s;
+}
+.theme-toggle:hover{background:rgba(255,255,255,.09);transform:translateY(-1px)}
+.theme-toggle .tt-light{display:none}
+:root[data-theme="light"] .theme-toggle .tt-dark{display:none}
+:root[data-theme="light"] .theme-toggle .tt-light{display:inline}
+:root[data-theme="light"] .theme-toggle{background:rgba(14,24,60,.04)}
+:root[data-theme="light"] .theme-toggle:hover{background:rgba(14,24,60,.09)}
+@media(max-width:800px){.theme-toggle{margin-left:auto}}
+
+/* ==================================================================
+   ============ ADDED: full-name expander ============
+   ================================================================== */
+.name-block{display:flex;flex-direction:column;align-items:center;gap:9px;margin:6px 0 4px}
+.name-short{font-size:15px;font-weight:750;letter-spacing:-.015em;color:var(--text)}
+.name-long{
+  font-size:14px;color:var(--muted);max-width:660px;
+  border:1px dashed var(--line-strong);border-radius:14px;padding:11px 16px;
+  background:rgba(255,255,255,.025);line-height:1.5;
+  animation:nameIn .35s ease;
+}
+@keyframes nameIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.name-toggle{
+  display:inline-flex;align-items:center;gap:7px;
+  font:inherit;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--muted);background:transparent;border:0;cursor:pointer;
+  padding:5px 8px;border-radius:9px;transition:.22s;
+}
+.name-toggle:hover{color:var(--text);background:rgba(255,255,255,.06)}
+.name-toggle .nt-caret{transition:transform .28s;display:inline-block;font-size:10px}
+.name-toggle[aria-expanded="true"] .nt-caret{transform:rotate(180deg)}
+:root[data-theme="light"] .name-toggle:hover{background:rgba(14,24,60,.06)}
+:root[data-theme="light"] .name-long{background:rgba(14,24,60,.03)}
+
+/* ==================================================================
+   ============ ADDED: hero meta pills ============
+   ================================================================== */
+.hero-meta{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin-top:24px}
+.meta-pill{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:9px 14px;border-radius:999px;border:1px solid var(--line);
+  background:rgba(255,255,255,.035);color:var(--muted);font-size:12.5px;
+  text-decoration:none;transition:.25s;line-height:1.3;
+}
+.meta-pill:hover{border-color:rgba(126,153,255,.4);color:var(--text);transform:translateY(-2px)}
+.meta-pill.ok{color:#7fe3b0;border-color:rgba(85,240,178,.3);background:rgba(85,240,178,.07)}
+.meta-pill.mail{color:#9eb7ff;border-color:rgba(105,151,255,.3);background:rgba(105,151,255,.08)}
+:root[data-theme="light"] .meta-pill{background:rgba(14,24,60,.04)}
+:root[data-theme="light"] .meta-pill.ok{color:#0f8a5f;border-color:rgba(15,138,95,.3);background:rgba(15,138,95,.09)}
+:root[data-theme="light"] .meta-pill.mail{color:#3558c9;border-color:rgba(53,88,201,.3);background:rgba(53,88,201,.09)}
+
+/* ==================================================================
+   ============ ADDED: contact methods ============
+   ================================================================== */
+.contact-grid{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;
+  max-width:760px;margin:0 auto 26px;text-align:left;
+}
+.contact-method{
+  display:flex;align-items:center;gap:14px;padding:16px 18px;text-decoration:none;color:var(--text);
+  border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.025);
+  transition:.28s;min-width:0;
+}
+.contact-method:hover{transform:translateY(-4px);border-color:rgba(115,150,255,.4);background:rgba(255,255,255,.05)}
+.cm-ico{
+  width:42px;height:42px;flex:none;display:grid;place-items:center;border-radius:13px;
+  border:1px solid var(--line);background:rgba(255,255,255,.035);font-size:17px;
+}
+.cm-body{display:flex;flex-direction:column;min-width:0}
+.cm-body small{font-size:9.5px;letter-spacing:.17em;text-transform:uppercase;color:var(--muted);opacity:.85;margin-bottom:3px}
+.cm-body strong{font-size:13.5px;font-weight:700;word-break:break-word;line-height:1.35}
+@media(max-width:600px){.contact-grid{grid-template-columns:1fr}}
+:root[data-theme="light"] .contact-method{background:rgba(14,24,60,.03)}
+:root[data-theme="light"] .contact-method:hover{background:rgba(14,24,60,.06)}
+:root[data-theme="light"] .cm-ico{background:rgba(14,24,60,.04)}
+
+/* ==================================================================
+   ============ ADDED: share buttons ============
+   ================================================================== */
+.share-block{margin-top:34px;padding-top:26px;border-top:1px solid var(--line)}
+.share-block .kicker{display:block;margin-bottom:14px}
+.share-row{display:flex;flex-wrap:wrap;gap:9px;justify-content:center}
+.share-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:10px 15px;border-radius:13px;border:1px solid var(--line);
+  background:rgba(255,255,255,.035);color:var(--text);text-decoration:none;
+  font:inherit;font-size:12.5px;font-weight:650;cursor:pointer;transition:.22s;
+}
+.share-btn:hover{transform:translateY(-3px);border-color:rgba(126,153,255,.45);background:rgba(255,255,255,.08)}
+.share-btn svg{width:15px;height:15px;fill:currentColor;flex:none}
+:root[data-theme="light"] .share-btn{background:rgba(14,24,60,.04)}
+:root[data-theme="light"] .share-btn:hover{background:rgba(14,24,60,.08)}
+
+/* ==================================================================
+   ============ ADDED: toast / loading / error / empty states ============
+   ================================================================== */
+.toast-wrap{
+  position:fixed;left:50%;bottom:28px;transform:translateX(-50%);
+  display:flex;flex-direction:column;gap:8px;z-index:60;pointer-events:none;
+  width:min(430px,calc(100% - 32px));
+}
+.toast{
+  pointer-events:auto;
+  display:flex;align-items:center;gap:11px;
+  padding:13px 16px;border-radius:14px;font-size:13px;line-height:1.4;
+  border:1px solid var(--line-strong);background:rgba(12,16,30,.94);color:#f5f7ff;
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  box-shadow:0 18px 50px rgba(0,0,0,.4);
+  animation:toastIn .3s ease;
+}
+:root[data-theme="light"] .toast{background:rgba(255,255,255,.97);color:#0a1024;box-shadow:0 18px 50px rgba(30,50,120,.16)}
+.toast.out{animation:toastOut .28s ease forwards}
+.toast .tico{font-size:15px;flex:none;width:16px;text-align:center}
+.toast.ok{border-color:rgba(85,240,178,.5)}
+.toast.err{border-color:rgba(255,110,110,.5)}
+.toast.loading .tico{animation:spin 1s linear infinite;display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes toastIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes toastOut{to{opacity:0;transform:translateY(10px)}}
+
+/* ==================================================================
+   ============ ADDED: page loading overlay ============
+   ================================================================== */
+.page-loader{
+  position:fixed;inset:0;z-index:100;display:grid;place-items:center;
+  background:var(--bg);
+  transition:opacity .45s ease,visibility .45s ease;
+}
+.page-loader.hide{opacity:0;visibility:hidden;pointer-events:none}
+.pl-ring{
+  width:44px;height:44px;border-radius:50%;
+  border:2px solid rgba(120,150,255,.22);border-top-color:#7ea0ff;
+  animation:spin .9s linear infinite;
+}
+
+/* ==================================================================
+   ============ ADDED: skip link ============
+   ================================================================== */
+.skip-link{
+  position:absolute;left:-9999px;top:0;z-index:80;
+  background:#0e1223;color:#fff;padding:12px 18px;
+  border:1px solid rgba(255,255,255,.16);border-radius:0 0 14px 0;font-size:13px;font-weight:700;
+}
+.skip-link:focus{left:0;outline:none;box-shadow:0 0 0 3px rgba(98,140,255,.4)}
+:root[data-theme="light"] .skip-link{background:#fff;color:#0a1024;border-color:rgba(14,24,60,.2)}
+
+/* ==================================================================
+   ============ ADDED: 404 overlay ============
+   ================================================================== */
+.notfound{
+  display:none;position:fixed;inset:0;z-index:70;
+  background:rgba(6,8,18,.94);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  place-items:center;text-align:center;padding:30px;
+}
+:root[data-theme="light"] .notfound{background:rgba(238,241,250,.96)}
+.notfound.show{display:grid}
+.nf-inner{max-width:540px}
+.nf-code{
+  font-size:clamp(76px,16vw,150px);font-weight:900;letter-spacing:-.07em;line-height:.85;
+  background:linear-gradient(100deg,#8eaeff,#b48aff);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.nf-inner h2{margin:10px 0 14px}
+.nf-inner p{color:var(--muted);margin-bottom:24px;font-size:14.5px}
+
+/* ==================================================================
+   ============ ADDED: focus + reduced motion ============
+   ================================================================== */
+.btn:focus-visible,.theme-toggle:focus-visible,.navtoggle:focus-visible,
+.name-toggle:focus-visible,.share-btn:focus-visible,.meta-pill:focus-visible,
+.connection-card:focus-visible,.contact-method:focus-visible{
+  outline:2px solid #7ea0ff;outline-offset:3px;
+}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+    scroll-behavior:auto !important;
+  }
+  .reveal{opacity:1;transform:none}
+  .particle,.cursor{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== ADDED: skip link ===== -->
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ===== ADDED: page loading state ===== -->
+<div class="page-loader" id="pageLoader" aria-hidden="true"><div class="pl-ring"></div></div>
+
+<div id="particles"></div><div class="cursor" id="cursor"></div>
+
+<nav>
+  <div class="logo">UPEK<span>.</span></div>
+  <div class="navlinks" id="navlinks">
+    <a href="#about">About</a><a href="#projects">Projects</a><a href="#anime">Anime</a><a href="#skills">Skills</a><a href="#connections">Links</a><a href="#contact">Contact</a><a href="anilist.html">AniList ↗</a>
+  </div>
+
+  <!-- ===== ADDED: theme toggle ===== -->
+  <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle colour theme" title="Toggle theme">
+    <span class="tt-dark" aria-hidden="true">🌙</span>
+    <span class="tt-light" aria-hidden="true">☀️</span>
+  </button>
+
+  <button class="navtoggle" id="navtoggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+
+<main class="wrap" id="main">
+<section class="hero">
+  <div class="hero-grid">
+    <div class="reveal">
+      <div class="eyebrow"><span class="dot"></span> Student · Builder · Creator</div>
+      <h1>Hi, I'm <span class="gradient">Upek.</span></h1>
+
+      <!-- ===== ADDED: full name with expander ===== -->
+      <div class="name-block">
+        <span class="name-short">Upek Randira Pathiraja</span>
+        <button class="name-toggle" id="nameToggle" type="button" aria-expanded="false" aria-controls="fullName">
+          <span>Full name</span><span class="nt-caret" aria-hidden="true">▼</span>
+        </button>
+        <div class="name-long" id="fullName" hidden>Pathiraja Mudiyanselage Upek Randira Pathiraja</div>
+      </div>
+
+      <p>I’m a student who likes turning random ideas into actual things: websites, games, tools, robotics projects, anime lists, and occasionally an unreasonable amount of CSS.</p>
+
+      <!-- ===== ADDED: location / availability / email pills ===== -->
+      <div class="hero-meta">
+        <span class="meta-pill">📍 Sri Lanka · Anuradhapura / Kurunegala</span>
+        <span class="meta-pill ok"><span class="dot"></span> Studying full time</span>
+        <a class="meta-pill mail" href="mailto:upekpathiraja325@gmail.com">✉ upekpathiraja325@gmail.com</a>
+      </div>
+
+      <div class="buttons">
+        <a class="btn primary" href="#projects">Explore my work ↗</a>
+        <a class="btn" href="#about">Get to know me</a>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-head reveal">
+    <div><div class="kicker">01 / About</div><h2>A student with<br>a builder mindset.</h2></div>
+    <p>Curious by default. Usually somewhere between studying, coding, designing something futuristic, and watching anime.</p>
+  </div>
+  <div class="about">
+    <div class="card profile-card reveal">
+      <div><div class="kicker">Current chapter</div><div class="big-number">09</div></div>
+      <div class="quote">“Learn it. Build it. Make it actually work.”</div>
+      <div class="tags"><span class="tag">Grade 9</span><span class="tag">Maths</span><span class="tag">Science</span><span class="tag">Coding</span></div>
+    </div>
+    <div class="card reveal">
+      <div class="kicker">What I'm into</div>
+      <div class="timeline" style="margin-top:20px">
+        <div class="event"><time>NOW</time><div><h3>Learning & exams</h3><p>Working through school subjects, maths problems, quizzes and presentations.</p></div></div>
+        <div class="event"><time>BUILD</time><div><h3>Web development</h3><p>Single-file HTML projects, interactive dashboards, games, trackers and futuristic interfaces.</p></div></div>
+        <div class="event"><time>CREATE</time><div><h3>Visual design</h3><p>Blue-purple neon aesthetics, clean interfaces, animations, logos and cinematic visuals.</p></div></div>
+        <div class="event"><time>WATCH</time><div><h3>Anime</h3><p>One Piece, Jujutsu Kaisen and especially absurdly overpowered protagonists.</p></div></div>
+        <div class="event"><time>BUILD 2.0</time><div><h3>Robotics</h3><p>Arduino projects, including an obstacle-avoiding car using sensors, motors and a motor driver.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="section-head reveal">
+    <div><div class="kicker">02 / Projects</div><h2>Things I've<br>built & imagined.</h2></div>
+    <p>A small museum of ideas. Some became code. Some became plans. Humanity survives another day.</p>
+  </div>
+  <div class="grid">
+    <article class="card project reveal"><span class="number">PROJECT / 01</span><h3>FrameVault</h3><p>A movie-tracking platform concept with its own visual identity instead of cloning an existing anime database design.</p><div class="tags"><span class="tag">Web</span><span class="tag">API</span><span class="tag">UI/UX</span></div></article>
+    <article class="card project reveal"><span class="number">PROJECT / 02</span><h3>Anime Tools</h3><p>Anime discovery, ranking ideas, recommendation lists and channel branding built around a love of power-fantasy anime.</p><div class="tags"><span class="tag">Anime</span><span class="tag">Content</span><span class="tag">Design</span></div></article>
+    <article class="card project reveal"><span class="number">PROJECT / 03</span><h3>Typing Lab</h3><p>An offline Monkeytype-inspired typing experience with settings, timers, WPM statistics and end-of-test results.</p><div class="tags"><span class="tag">HTML</span><span class="tag">JavaScript</span><span class="tag">Offline</span></div></article>
+    <article class="card project reveal"><span class="number">PROJECT / 04</span><h3>Obstacle Car</h3><p>An Arduino robotics project designed to detect obstacles and autonomously navigate around them.</p><div class="tags"><span class="tag">Arduino</span><span class="tag">Robotics</span><span class="tag">Sensors</span></div></article>
+    <article class="card project reveal"><span class="number">PROJECT / 05</span><h3>FrameVault UI</h3><p>A futuristic product-style interface experiment focused on cards, motion, responsive layouts and cinematic presentation.</p><div class="tags"><span class="tag">Frontend</span><span class="tag">Motion</span><span class="tag">Responsive</span></div></article>
+    <article class="card project reveal"><span class="number">PROJECT / 06</span><h3>Study Systems</h3><p>Past-paper dashboards, quizzes, result sheets and other small tools designed to make studying less painfully chaotic.</p><div class="tags"><span class="tag">Education</span><span class="tag">Dashboards</span><span class="tag">Tools</span></div></article>
+  </div>
+</section>
+
+<section id="anime">
+  <div class="section-head reveal">
+    <div><div class="kicker">03 / Anime</div><h2>The other<br>side of the brain.</h2></div>
+    <p>When schoolwork is temporarily defeated, fictional characters with catastrophic power levels take over.</p>
+  </div>
+  <div class="grid">
+    <div class="card reveal" style="border-color:rgba(255,181,74,.35)">
+      <div class="card-banner banner-op"><span class="banner-icon">☠️</span><span class="banner-label">One Piece</span></div>
+      <h3>One Piece</h3><p>Big adventures, ridiculous characters, huge mysteries and the occasional emotional damage disguised as a cartoon.</p><div class="tags"><span class="tag" style="border-color:rgba(255,181,74,.4);color:#ffd89a">Top pick</span></div>
+    </div>
+    <div class="card reveal">
+      <div class="card-banner banner-jjk"><span class="banner-icon">⚡</span><span class="banner-label">Jujutsu Kaisen</span></div>
+      <h3>Jujutsu Kaisen</h3><p>Cursed techniques, chaotic fights and characters who apparently consider peace an optional feature.</p>
+    </div>
+    <div class="card reveal">
+      <div class="card-banner banner-pf"><span class="banner-icon">👑</span><span class="banner-label">Power Fantasy</span></div>
+      <h3>Power Fantasy</h3><p>Especially isekai and fantasy series where the main character knows they're ridiculously strong and actually acts like it.</p>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="section-head reveal">
+    <div><div class="kicker">04 / Toolkit</div><h2>Curiosity is<br>the main skill.</h2></div>
+    <p>The technical stack is always changing. The willingness to mess with things until they work is considerably more stable.</p>
+  </div>
+  <div class="card reveal">
+    <div class="skills">
+      <span class="skill">HTML / CSS</span><span class="skill">JavaScript</span><span class="skill">Python</span>
+      <span class="skill">Arduino</span><span class="skill">UI / UX</span><span class="skill">Animations</span>
+      <span class="skill">Responsive Design</span><span class="skill">Problem Solving</span><span class="skill">Maths</span>
+      <span class="skill">Science</span><span class="skill">Anime Research</span><span class="skill">Creative Ideas</span>
+    </div>
+  </div>
+</section>
+
+
+<section id="connections">
+  <div class="section-head reveal">
+    <div><div class="kicker">05 / Connections</div><h2>Find me<br>around the web.</h2></div>
+    <p>The places where I post, watch, build, scroll, and probably lose track of time.</p>
+  </div>
+
+  <div class="connections-grid">
+    <a class="connection-card reveal" href="https://discord.com/" target="_blank" rel="noopener noreferrer">
+      <div class="connection-icon discord-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.54 5.32A16.9 16.9 0 0 0 15.4 4l-.5 1.02a15.3 15.3 0 0 0-3.8 0L10.6 4a16.9 16.9 0 0 0-4.14 1.32C3.83 9.06 3.12 12.7 3.48 16.28a16.8 16.8 0 0 0 5.08 2.58l1.23-1.67c-.68-.25-1.33-.57-1.94-.95l.47-.36c3.74 1.75 7.8 1.75 11.5 0l.48.36c-.61.38-1.26.7-1.94.95l1.23 1.67a16.8 16.8 0 0 0 5.08-2.58c.42-4.15-.71-7.75-3.63-10.96ZM9.75 14.1c-1.1 0-2-.99-2-2.2s.88-2.2 2-2.2c1.13 0 2.02.99 2 2.2 0 1.21-.88 2.2-2 2.2Zm4.5 0c-1.1 0-2-.99-2-2.2s.88-2.2 2-2.2c1.13 0 2.02.99 2 2.2 0 1.21-.88 2.2-2 2.2Z"/></svg>
+      </div>
+      <div class="connection-info"><span class="connection-name">Discord</span><span class="connection-handle">.upek</span></div>
+      <span class="connection-arrow">↗</span>
+    </a>
+
+    <a class="connection-card reveal" href="https://www.reddit.com/user/Intelligent-Win5053/" target="_blank" rel="noopener noreferrer">
+      <div class="connection-icon reddit-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 4.9a2.25 2.25 0 1 0-4.43.7l-3.8 1.67a2.8 2.8 0 1 0-2.3 4.94v.29c0 3.88 4.4 7.02 9.83 7.02s9.83-3.14 9.83-7.02v-.29a2.8 2.8 0 0 0-2.3-4.94l-3.8-1.67c.1-.22.15-.46.15-.7A2.27 2.27 0 0 0 14.7 4.9Zm-4.08 2.17 3.05-.35a.8.8 0 1 0 .18-.95l-3.38.39c-.07.03-.13.06-.18.1a2.25 2.25 0 0 0 .33.81ZM8.6 11.3a1.3 1.3 0 1 1 0 2.6 1.3 1.3 0 0 1 0-2.6Zm6.8 0a1.3 1.3 0 1 1 0 2.6 1.3 1.3 0 0 1 0-2.6Zm-6.03 4.05c1.48.92 3.78.92 5.26 0a.5.5 0 1 1 .53.85c-1.77 1.1-4.55 1.1-6.32 0a.5.5 0 1 1 .53-.85Z"/></svg>
+      </div>
+      <div class="connection-info"><span class="connection-name">Reddit</span><span class="connection-handle">Intelligent-Win5053</span></div>
+      <span class="connection-arrow">↗</span>
+    </a>
+
+    <a class="connection-card reveal" href="https://www.youtube.com/@upvids" target="_blank" rel="noopener noreferrer">
+      <div class="connection-icon youtube-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.12C19.54 3.55 12 3.55 12 3.55s-7.54 0-9.4.53A3 3 0 0 0 .5 6.2 31.2 31.2 0 0 0 0 12a31.2 31.2 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.12c1.86.53 9.4.53 9.4.53s7.54 0 9.4-.53a3 3 0 0 0 2.1-2.12A31.2 31.2 0 0 0 24 12a31.2 31.2 0 0 0-.5-5.8ZM9.55 15.6V8.4L15.82 12l-6.27 3.6Z"/></svg>
+      </div>
+      <div class="connection-info"><span class="connection-name">YouTube</span><span class="connection-handle">@upvids</span></div>
+      <span class="connection-arrow">↗</span>
+    </a>
+
+    <a class="connection-card reveal" href="https://x.com/ridezawave" target="_blank" rel="noopener noreferrer">
+      <div class="connection-icon x-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2H22l-6.77 7.74L23.2 22h-6.25l-4.9-6.4L6.45 22H3.33l7.24-8.28L2.8 2h6.4l4.43 5.86L18.9 2Zm-1.1 17.95h1.73L8.3 3.93H6.45L17.8 19.95Z"/></svg>
+      </div>
+      <div class="connection-info"><span class="connection-name">X / Twitter</span><span class="connection-handle">@ridezawave</span></div>
+      <span class="connection-arrow">↗</span>
+    </a>
+    <a class="connection-card reveal" href="https://github.com/Upekkk" target="_blank" rel="noopener noreferrer">
+      <div class="connection-icon github-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .6a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.83 1.23 1.83 1.23 1.07 1.83 2.8 1.3 3.48 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.93 0-1.31.47-2.38 1.23-3.22-.12-.3-.53-1.52.12-3.17 0 0 1-.32 3.3 1.23A11.5 11.5 0 0 1 12 5.23c1.02 0 2.05.14 3.01.42 2.29-1.55 3.29-1.23 3.29-1.23.65 1.65.24 2.87.12 3.17.77.84 1.23 1.91 1.23 3.22 0 4.6-2.8 5.62-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.58A12 12 0 0 0 12 .6Z"/></svg>
+      </div>
+      <div class="connection-info"><span class="connection-name">GitHub</span><span class="connection-handle">@Upekkk</span></div>
+      <span class="connection-arrow">↗</span>
+    </a>
+
+    <a class="connection-card reveal" href="https://anilist.co/user/Upek/" target="_blank" rel="noopener noreferrer">
+      <div class="connection-icon anilist-icon">
+        <span>AL</span>
+      </div>
+      <div class="connection-info"><span class="connection-name">AniList</span><span class="connection-handle">@Upek</span></div>
+      <span class="connection-arrow">↗</span>
+    </a>
+
+    <a class="connection-card reveal" href="https://www.instagram.com/upekpathiraja/" target="_blank" rel="noopener noreferrer">
+      <div class="connection-icon instagram-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.25-3.25a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5Z"/></svg>
+      </div>
+      <div class="connection-info"><span class="connection-name">Instagram</span><span class="connection-handle">@upekpathiraja</span></div>
+      <span class="connection-arrow">↗</span>
+    </a>
+
+    <a class="connection-card reveal" href="https://www.tiktok.com/@upekpathiraja" target="_blank" rel="noopener noreferrer">
+      <div class="connection-icon tiktok-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.32 5.2c-.83-.5-1.48-1.2-1.89-2.07A6.25 6.25 0 0 1 17.1 2h-3.2v13.1a2.7 2.7 0 1 1-2.7-2.7c.28 0 .55.04.8.12V9.25a6 6 0 0 0-.8-.06A5.9 5.9 0 1 0 17.1 15V8.37a9.4 9.4 0 0 0 5.5 1.77V6.95c-1.18-.01-2.34-.35-3.28-.98Z"/></svg>
+      </div>
+      <div class="connection-info"><span class="connection-name">TikTok</span><span class="connection-handle">@upekpathiraja</span></div>
+      <span class="connection-arrow">↗</span>
+    </a>
+  </div>
+
+</section>
+
+<section id="contact">
+  <div class="card reveal" style="text-align:center;padding:65px 25px">
+    <div class="kicker">06 / End of transmission</div>
+    <h2 style="margin-top:15px">Still building.</h2>
+    <p style="max-width:580px;margin:18px auto;color:var(--muted)">This profile is a snapshot, not a finished character sheet. More projects, experiments and questionable amounts of animation are inevitable.</p>
+
+    <!-- ===== ADDED: contact methods ===== -->
+    <div class="contact-grid">
+      <a class="contact-method" href="mailto:upekpathiraja325@gmail.com">
+        <div class="cm-ico" aria-hidden="true">✉</div>
+        <div class="cm-body"><small>Email · preferred</small><strong>upekpathiraja325@gmail.com</strong></div>
+      </a>
+      <a class="contact-method" href="https://discord.com/" target="_blank" rel="noopener noreferrer">
+        <div class="cm-ico" aria-hidden="true">💬</div>
+        <div class="cm-body"><small>Discord · preferred</small><strong>.upek</strong></div>
+      </a>
+      <div class="contact-method" style="cursor:default">
+        <div class="cm-ico" aria-hidden="true">📍</div>
+        <div class="cm-body"><small>Location</small><strong>Sri Lanka · Anuradhapura / Kurunegala</strong></div>
+      </div>
+      <div class="contact-method" style="cursor:default">
+        <div class="cm-ico" aria-hidden="true">🎓</div>
+        <div class="cm-body"><small>Availability</small><strong>Studying full time</strong></div>
+      </div>
+    </div>
+
+    <div class="buttons" style="justify-content:center">
+      <a class="btn primary" href="#projects">View projects ↗</a>
+
+      <!-- ===== ADDED: email + vCard buttons ===== -->
+      <a class="btn" href="mailto:upekpathiraja325@gmail.com">✉ Email me</a>
+      <button class="btn" id="vcardBtn" type="button">↓ Save contact (vCard)</button>
+
+      <a class="btn" href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">Back to top ↑</a>
+    </div>
+
+    <!-- ===== ADDED: share buttons ===== -->
+    <div class="share-block">
+      <span class="kicker">Share this profile</span>
+      <div class="share-row" id="shareRow">
+        <button class="share-btn" data-net="native" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16a3 3 0 0 0-2.24 1l-6.3-3.68c.03-.1.04-.21.04-.32s-.01-.22-.04-.32l6.3-3.68A3 3 0 1 0 15 6c0 .11.01.22.04.32L8.74 10A3 3 0 1 0 8.74 14l6.3 3.68A3 3 0 1 0 18 16Z"/></svg>
+          Share…
+        </button>
+        <a class="share-btn" data-net="x" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fupekkk.github.io%2F&text=Check%20out%20Upek%20Randira%20Pathiraja%20%E2%80%94%20student%2C%20builder%20and%20creator." target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2H22l-6.77 7.74L23.2 22h-6.25l-4.9-6.4L6.45 22H3.33l7.24-8.28L2.8 2h6.4l4.43 5.86L18.9 2Zm-1.1 17.95h1.73L8.3 3.93H6.45L17.8 19.95Z"/></svg>
+          X
+        </a>
+        <a class="share-btn" data-net="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fupekkk.github.io%2F" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.7c0-.9.3-1.6 1.7-1.6h1.5V4.2c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.7H7.8V14h2.7v8h3Z"/></svg>
+          Facebook
+        </a>
+        <a class="share-btn" data-net="linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fupekkk.github.io%2F" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5ZM3 9.5h4V21H3V9.5Zm6.5 0h3.8v1.6h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.3c0-1.27-.02-2.9-1.77-2.9-1.77 0-2.04 1.38-2.04 2.8V21h-4V9.5Z"/></svg>
+          LinkedIn
+        </a>
+        <a class="share-btn" data-net="reddit" href="https://www.reddit.com/submit?url=https%3A%2F%2Fupekkk.github.io%2F&title=Upek%20Randira%20Pathiraja%20%E2%80%94%20Digital%20Profile" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 4.9a2.25 2.25 0 1 0-4.43.7l-3.8 1.67a2.8 2.8 0 1 0-2.3 4.94v.29c0 3.88 4.4 7.02 9.83 7.02s9.83-3.14 9.83-7.02v-.29a2.8 2.8 0 0 0-2.3-4.94l-3.8-1.67c.1-.22.15-.46.15-.7A2.27 2.27 0 0 0 14.7 4.9ZM8.6 11.3a1.3 1.3 0 1 1 0 2.6 1.3 1.3 0 0 1 0-2.6Zm6.8 0a1.3 1.3 0 1 1 0 2.6 1.3 1.3 0 0 1 0-2.6Zm-6.03 4.05c1.48.92 3.78.92 5.26 0a.5.5 0 1 1 .53.85c-1.77 1.1-4.55 1.1-6.32 0a.5.5 0 1 1 .53-.85Z"/></svg>
+          Reddit
+        </a>
+        <a class="share-btn" data-net="whatsapp" href="https://wa.me/?text=Check%20out%20Upek%20Randira%20Pathiraja%20%E2%80%94%20https%3A%2F%2Fupekkk.github.io%2F" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.3-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5-4.5-.2-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.4.7-.4h.5c.2 0 .4 0 .6.4.2.5.7 1.7.8 1.8.1.1.1.3 0 .5-.1.2-.2.3-.3.5-.1.1-.3.3-.4.4-.1.1-.3.3-.1.5.2.3.9 1.4 1.9 2.3 1.3 1.1 2.3 1.5 2.6 1.6.3.1.5.1.7-.1.2-.2.8-.9 1-1.2.2-.3.4-.3.7-.2.3.1 1.7.8 2 1 .3.2.5.2.6.4.1.2.1 1-.1 1.6Z"/></svg>
+          WhatsApp
+        </a>
+        <a class="share-btn" data-net="telegram" href="https://t.me/share/url?url=https%3A%2F%2Fupekkk.github.io%2F&text=Check%20out%20Upek%20Randira%20Pathiraja" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.9 4.3 18.7 19.5c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.3-4.9L18 6.5c.4-.3-.1-.5-.6-.2L7.2 12.7l-4.7-1.5c-1-.3-1-1 .2-1.5l18.2-7c.9-.3 1.7.2 1.4 1.6Z"/></svg>
+          Telegram
+        </a>
+        <a class="share-btn" data-net="email" href="mailto:?subject=Upek%20Randira%20Pathiraja%20%E2%80%94%20Digital%20Profile&body=Check%20out%20https%3A%2F%2Fupekkk.github.io%2F">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm1.4 2 7.6 5.3L19.6 7H4.4ZM20 8.4l-7.4 5.2a1 1 0 0 1-1.2 0L4 8.4V17h16V8.4Z"/></svg>
+          Email
+        </a>
+        <button class="share-btn" data-net="copy" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 2h9a2 2 0 0 1 2 2v11h-2V4H9V2Zm-4 4h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm0 2v12h10V8H5Z"/></svg>
+          Copy link
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><strong>UPEK.</strong> · Built with HTML, CSS &amp; JavaScript · v1.2 · Last updated September 2026</footer>
+
+<!-- ===== ADDED: toast container (loading / error / success / empty states) ===== -->
+<div class="toast-wrap" id="toastWrap" aria-live="polite" aria-atomic="true"></div>
+
+<!-- ===== ADDED: 404 overlay (also opens with #404 in the URL) ===== -->
+<div class="notfound" id="notFound" role="dialog" aria-labelledby="nfTitle">
+  <div class="nf-inner">
+    <div class="nf-code">404</div>
+    <h2 id="nfTitle">Lost in the void.</h2>
+    <p>That page doesn't exist on this profile. The particles ate it.</p>
+    <div class="buttons" style="justify-content:center">
+      <a class="btn primary" href="#top" data-nf-close>Back to profile ↗</a>
+      <button class="btn" type="button" data-nf-close>Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const particles=document.getElementById('particles');
+for(let i=0;i<55;i++){
+  const p=document.createElement('i');p.className='particle';
+  p.style.left=Math.random()*100+'%';
+  p.style.animationDuration=(8+Math.random()*16)+'s';
+  p.style.animationDelay=(-Math.random()*18)+'s';
+  p.style.opacity=(.15+Math.random()*.55);
+  particles.appendChild(p);
+}
+const cursor=document.getElementById('cursor');
+if(window.matchMedia('(pointer:fine)').matches){
+  window.addEventListener('pointermove',e=>{
+    cursor.animate({left:e.clientX+'px',top:e.clientY+'px'},{duration:500,fill:'forwards'});
+  });
+}else{
+  cursor.style.display='none';
+}
+
+const navToggle=document.getElementById('navtoggle');
+const navlinksEl=document.getElementById('navlinks');
+navToggle.addEventListener('click',()=>{
+  const open=navlinksEl.classList.toggle('open');
+  navToggle.classList.toggle('open',open);
+  navToggle.setAttribute('aria-expanded',open);
+});
+navlinksEl.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+  navlinksEl.classList.remove('open');navToggle.classList.remove('open');navToggle.setAttribute('aria-expanded','false');
+}));
+
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(e=>observer.observe(e));
+
+const navLinks=[...document.querySelectorAll('.navlinks a')];
+const navSections=navLinks.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+const navObserver=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const id=e.target.id;
+      navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+id));
+    }
+  });
+},{rootMargin:'-45% 0px -50% 0px'});
+navSections.forEach(s=>navObserver.observe(s));
+document.querySelectorAll('.card').forEach(card=>{
+  card.addEventListener('pointermove',e=>{
+    const r=card.getBoundingClientRect();
+    card.style.setProperty('--x',((e.clientX-r.left)/r.width*100)+'%');
+    card.style.setProperty('--y',((e.clientY-r.top)/r.height*100)+'%');
+  });
+});
+
+/* ==================================================================
+   ============ ADDED: page loader ============
+   ================================================================== */
+window.addEventListener('load',()=>{
+  const pl=document.getElementById('pageLoader');
+  if(pl) setTimeout(()=>pl.classList.add('hide'), 220);
+});
+setTimeout(()=>{  /* safety fallback */
+  const pl=document.getElementById('pageLoader');
+  if(pl) pl.classList.add('hide');
+}, 3500);
+
+/* ==================================================================
+   ============ ADDED: toast system (loading / error / success / info) ============
+   ================================================================== */
+const Toast = (function(){
+  const wrap = document.getElementById('toastWrap');
+  function show(msg, kind, ms){
+    if(!wrap) return null;
+    const el = document.createElement('div');
+    el.className = 'toast' + (kind ? ' ' + kind : '');
+    const ico = kind === 'ok' ? '✓'
+              : kind === 'err' ? '⚠'
+              : kind === 'loading' ? '⏳'
+              : 'ℹ';
+    const t = document.createElement('span'); t.className='tico'; t.textContent=ico;
+    const m = document.createElement('span'); m.textContent=msg;
+    el.appendChild(t); el.appendChild(m);
+    wrap.appendChild(el);
+    if(kind !== 'loading' && ms !== 0){
+      setTimeout(()=>{
+        el.classList.add('out');
+        setTimeout(()=>el.remove(), 300);
+      }, ms || 2600);
+    }
+    return el;
+  }
+  return {
+    info:    (m,ms)=>show(m,'',ms),
+    ok:      (m,ms)=>show(m,'ok',ms),
+    err:     (m,ms)=>show(m,'err',ms),
+    loading: (m)=>show(m,'loading',0),
+    dismiss: (el)=>{ if(el){ el.classList.add('out'); setTimeout(()=>el.remove(),300); } }
+  };
+})();
+
+/* ==================================================================
+   ============ ADDED: theme toggle ============
+   ================================================================== */
+(function(){
+  const root = document.documentElement;
+  const btn  = document.getElementById('themeToggle');
+  if(!btn) return;
+
+  const metaDark  = document.querySelector('meta[name="theme-color"][media*="dark"]');
+  const metaLight = document.querySelector('meta[name="theme-color"][media*="light"]');
+
+  function apply(theme){
+    root.setAttribute('data-theme', theme);
+    try{ localStorage.setItem('upek.theme', theme); }catch(e){}
+    btn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    btn.setAttribute('title',      theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+  }
+
+  apply(root.getAttribute('data-theme') || 'dark');
+
+  btn.addEventListener('click', ()=>{
+    const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    apply(next);
+  });
+
+  /* Follow the OS if the user hasn't chosen a theme yet */
+  try{
+    const mq = window.matchMedia('(prefers-color-scheme: light)');
+    const onChange = (e)=>{
+      if(localStorage.getItem('upek.theme')) return;
+      apply(e.matches ? 'light' : 'dark');
+    };
+    if(mq.addEventListener) mq.addEventListener('change', onChange);
+    else if(mq.addListener) mq.addListener(onChange);
+  }catch(e){}
+})();
+
+/* ==================================================================
+   ============ ADDED: full-name expander ============
+   ================================================================== */
+(function(){
+  const btn   = document.getElementById('nameToggle');
+  const panel = document.getElementById('fullName');
+  if(!btn || !panel) return;
+  btn.addEventListener('click', ()=>{
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    panel.hidden = open;
+  });
+})();
+
+/* ==================================================================
+   ============ ADDED: vCard download ============
+   ================================================================== */
+(function(){
+  const btn = document.getElementById('vcardBtn');
+  if(!btn) return;
+
+  function stamp(){
+    return new Date().toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z';
+  }
+
+  function buildVCard(){
+    return [
+      'BEGIN:VCARD',
+      'VERSION:3.0',
+      'N:Pathiraja;Upek Randira;;;',
+      'FN:Upek Randira Pathiraja',
+      'NICKNAME:Upek',
+      'X-LONG-NAME:Pathiraja Mudiyanselage Upek Randira Pathiraja',
+      'TITLE:Student',
+      'EMAIL;type=INTERNET;type=WORK:upekpathiraja325@gmail.com',
+      'URL:https://upekkk.github.io/',
+      'ADR;type=HOME:;;;Anuradhapura / Kurunegala;;;Sri Lanka',
+      'NOTE:Student\\, builder and creator from Sri Lanka. Prefers contact via email or Discord.',
+      'X-SOCIALPROFILE;type=discord:.upek',
+      'X-SOCIALPROFILE;type=github:https://github.com/Upekkk',
+      'X-SOCIALPROFILE;type=x:https://x.com/ridezawave',
+      'X-SOCIALPROFILE;type=youtube:https://www.youtube.com/@upvids',
+      'X-SOCIALPROFILE;type=instagram:https://www.instagram.com/upekpathiraja/',
+      'X-SOCIALPROFILE;type=tiktok:https://www.tiktok.com/@upekpathiraja',
+      'X-SOCIALPROFILE;type=anilist:https://anilist.co/user/Upek/',
+      'X-SOCIALPROFILE;type=reddit:https://www.reddit.com/user/Intelligent-Win5053/',
+      'REV:' + stamp(),
+      'END:VCARD'
+    ].join('\r\n');
+  }
+
+  btn.addEventListener('click', ()=>{
+    const loading = Toast.loading('Preparing contact card…');
+    try{
+      const blob = new Blob([buildVCard()], { type:'text/vcard;charset=utf-8' });
+      const url  = URL.createObjectURL(blob);
+      const a    = document.createElement('a');
+      a.href = url;
+      a.download = 'upek-randira-pathiraja.vcf';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(()=>{ URL.revokeObjectURL(url); a.remove(); }, 0);
+      Toast.dismiss(loading);
+      Toast.ok('Contact card downloaded.');
+    }catch(err){
+      Toast.dismiss(loading);
+      Toast.err('Could not create the vCard. Try again.');
+    }
+  });
+})();
+
+/* ==================================================================
+   ============ ADDED: share buttons ============
+   ================================================================== */
+(function(){
+  const wrap = document.getElementById('shareRow');
+  if(!wrap) return;
+
+  const profileUrl = 'https://upekkk.github.io/';
+  const shareText  = 'Check out Upek Randira Pathiraja — student, builder and creator.';
+
+  wrap.querySelectorAll('[data-net]').forEach(btn=>{
+    btn.addEventListener('click', async (ev)=>{
+      const net = btn.dataset.net;
+
+      if(net === 'native'){
+        ev.preventDefault();
+        if(navigator.share){
+          try{
+            await navigator.share({ title: document.title, text: shareText, url: profileUrl });
+          }catch(err){ /* user dismissed — that's fine */ }
+        }else{
+          Toast.info('Native sharing is not supported in this browser.');
+        }
+        return;
+      }
+
+      if(net === 'copy'){
+        ev.preventDefault();
+        try{
+          if(navigator.clipboard && window.isSecureContext){
+            await navigator.clipboard.writeText(profileUrl);
+          }else{
+            const ta = document.createElement('textarea');
+            ta.value = profileUrl;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            ta.remove();
+          }
+          Toast.ok('Link copied to clipboard.');
+        }catch(err){
+          Toast.err('Copy failed — select the URL manually.');
+        }
+      }
+      /* Other networks are plain links — the browser handles them */
+    });
+  });
+})();
+
+/* ==================================================================
+   ============ ADDED: 404 handling ============
+   Opens with:  /?404  or  #404
+   See 404.html (separate file) for a real GitHub Pages 404 page.
+   ================================================================== */
+(function(){
+  const nf = document.getElementById('notFound');
+  if(!nf) return;
+
+  function show(){
+    nf.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+  function hide(){
+    nf.classList.remove('show');
+    document.body.style.overflow = '';
+    if(location.hash === '#404'){
+      history.replaceState(null, '', location.pathname + location.search);
+    }
+  }
+
+  if(location.hash === '#404' || new URLSearchParams(location.search).has('404')){
+    show();
+  }
+
+  nf.querySelectorAll('[data-nf-close]').forEach(el=>{
+    el.addEventListener('click', hide);
+  });
+
+  document.addEventListener('keydown', e=>{
+    if(e.key === 'Escape' && nf.classList.contains('show')) hide();
+  });
+
+  window.addEventListener('hashchange', ()=>{
+    if(location.hash === '#404') show();
+  });
+})();
+</script>
+</body>
+</html>
