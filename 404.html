@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Lost in the void · Upek.</title>
+<meta name="description" content="That page doesn't exist on Upek's profile. Head back to the main page.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://upekkk.github.io/404.html">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏴‍☠️</text></svg>">
+<link rel="apple-touch-icon" href="https://upekkk.github.io/avatar.jpg">
+<meta name="theme-color" content="#060812" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#eef1fa" media="(prefers-color-scheme: light)">
+<meta name="color-scheme" content="dark light">
+
+<!-- Theme bootstrap — runs before paint so there is no flash -->
+<script>
+(function(){
+  try{
+    var saved = localStorage.getItem('upek.theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    document.documentElement.setAttribute('data-theme', theme);
+  }catch(e){
+    document.documentElement.setAttribute('data-theme','dark');
+  }
+})();
+</script>
+
+<style>
+:root{
+  --bg:#060812;
+  --text:#f5f7ff;
+  --muted:#9ca6c5;
+  --line:rgba(255,255,255,.09);
+  --line-strong:rgba(255,255,255,.16);
+  --cyan:#52e4ff;
+  color-scheme: dark;
+}
+:root[data-theme="light"]{
+  --bg:#eef1fa;
+  --text:#0a1024;
+  --muted:#5b6785;
+  --line:rgba(14,24,60,.11);
+  --line-strong:rgba(14,24,60,.2);
+  --cyan:#0d8fb8;
+  color-scheme: light;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;
+  min-height:100vh;
+  display:grid;
+  place-items:center;
+  padding:40px 20px;
+  background:
+    radial-gradient(circle at 15% 10%,rgba(83,128,255,.15),transparent 30%),
+    radial-gradient(circle at 85% 25%,rgba(155,108,255,.13),transparent 30%),
+    radial-gradient(circle at 50% 100%,rgba(82,228,255,.08),transparent 32%),
+    var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+  line-height:1.6;
+  position:relative;
+}
+:root[data-theme="light"] body{
+  background:
+    radial-gradient(circle at 15% 10%,rgba(83,128,255,.18),transparent 34%),
+    radial-gradient(circle at 85% 25%,rgba(155,108,255,.15),transparent 34%),
+    radial-gradient(circle at 50% 100%,rgba(82,228,255,.18),transparent 36%),
+    var(--bg);
+}
+
+/* faint grid overlay */
+body:before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:55px 55px;
+  mask-image:linear-gradient(to bottom,black,transparent 90%);
+  -webkit-mask-image:linear-gradient(to bottom,black,transparent 90%);
+}
+:root[data-theme="light"] body:before{
+  background-image:
+    linear-gradient(rgba(14,24,60,.055) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(14,24,60,.055) 1px,transparent 1px);
+  opacity:.6;
+}
+
+/* floating particles */
+#particles{position:fixed;inset:0;z-index:0;pointer-events:none}
+.particle{
+  position:absolute;width:2px;height:2px;border-radius:50%;
+  background:#9db8ff;opacity:.5;
+  animation:float linear infinite;
+}
+:root[data-theme="light"] .particle{background:#5b7cf0}
+@keyframes float{
+  from{transform:translateY(105vh) translateX(0)}
+  to{transform:translateY(-10vh) translateX(30px)}
+}
+
+/* cursor glow (desktop only) */
+.cursor{
+  position:fixed;
+  width:360px;height:360px;border-radius:50%;
+  background:radial-gradient(circle,rgba(84,125,255,.09),transparent 65%);
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+  z-index:1;
+}
+
+/* top nav — minimal, links back home */
+.topbar{
+  position:fixed;top:18px;left:50%;transform:translateX(-50%);
+  width:min(900px,calc(100% - 28px));height:62px;padding:8px 10px;
+  border:1px solid var(--line);
+  background:rgba(7,10,22,.62);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-radius:22px;
+  display:flex;align-items:center;justify-content:space-between;
+  z-index:20;box-shadow:0 10px 50px rgba(0,0,0,.22);
+}
+:root[data-theme="light"] .topbar{
+  background:rgba(255,255,255,.78);
+  box-shadow:0 10px 40px rgba(30,50,120,.1);
+}
+.logo{
+  font-weight:900;letter-spacing:-1px;font-size:20px;padding-left:12px;
+  color:var(--text);text-decoration:none;
+}
+.logo span{color:var(--cyan)}
+.theme-toggle{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:38px;height:38px;flex:none;margin-right:6px;
+  border:1px solid var(--line);border-radius:11px;
+  background:rgba(255,255,255,.035);color:var(--text);
+  cursor:pointer;font-size:15px;line-height:1;padding:0;
+  transition:.25s;
+}
+.theme-toggle:hover{background:rgba(255,255,255,.09);transform:translateY(-1px)}
+.theme-toggle .tt-light{display:none}
+:root[data-theme="light"] .theme-toggle .tt-dark{display:none}
+:root[data-theme="light"] .theme-toggle .tt-light{display:inline}
+:root[data-theme="light"] .theme-toggle{background:rgba(14,24,60,.04)}
+
+/* main card */
+.wrap{
+  position:relative;z-index:2;
+  width:min(720px,100%);
+  text-align:center;
+  padding:70px 20px 40px;
+}
+
+.kicker{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:8px 12px;border:1px solid var(--line);
+  border-radius:999px;background:rgba(255,255,255,.035);
+  color:var(--muted);font-size:12px;
+  letter-spacing:.14em;text-transform:uppercase;font-weight:650;
+}
+:root[data-theme="light"] .kicker{background:rgba(14,24,60,.04)}
+.kicker .dot{
+  width:7px;height:7px;border-radius:50%;
+  background:#ff6b6b;
+  box-shadow:0 0 15px #ff6b6b;
+  animation:pulse 1.6s ease-in-out infinite;
+}
+@keyframes pulse{
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.6;transform:scale(1.25)}
+}
+
+.code{
+  font-size:clamp(110px,22vw,220px);
+  font-weight:900;
+  letter-spacing:-.08em;
+  line-height:.85;
+  margin:22px 0 8px;
+  background:linear-gradient(100deg,#fff 8%,#8eaeff 48%,#b48aff 92%);
+  -webkit-background-clip:text;background-clip:text;
+  color:transparent;
+  filter:drop-shadow(0 20px 60px rgba(120,150,255,.28));
+  user-select:none;
+}
+:root[data-theme="light"] .code{
+  background:linear-gradient(100deg,#0a1024 8%,#3f6bff 52%,#7c3fe0 92%);
+  -webkit-background-clip:text;background-clip:text;
+  color:transparent;
+  filter:drop-shadow(0 20px 60px rgba(60,90,200,.18));
+}
+
+h1{
+  font-size:clamp(26px,4.4vw,42px);
+  letter-spacing:-.05em;
+  line-height:1.1;
+  margin-bottom:14px;
+}
+
+.lead{
+  color:var(--muted);
+  font-size:16px;
+  max-width:520px;
+  margin:0 auto 12px;
+}
+
+.path{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:12.5px;
+  color:var(--muted);
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:8px 13px;
+  margin:8px 0 30px;
+  max-width:100%;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+:root[data-theme="light"] .path{background:rgba(14,24,60,.035)}
+.path b{color:var(--text);font-weight:650}
+
+/* buttons */
+.buttons{
+  display:flex;gap:12px;flex-wrap:wrap;justify-content:center;
+}
+.btn{
+  text-decoration:none;color:var(--text);
+  padding:13px 18px;border-radius:15px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.05);
+  transition:.25s;
+  display:inline-flex;gap:9px;align-items:center;
+  font:inherit;font-size:14px;cursor:pointer;
+  font-family:inherit;
+}
+:root[data-theme="light"] .btn{background:rgba(14,24,60,.045)}
+.btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 30px rgba(0,0,0,.25);
+  border-color:var(--line-strong);
+}
+:root[data-theme="light"] .btn:hover{box-shadow:0 12px 30px rgba(30,50,120,.14)}
+.btn.primary{
+  background:linear-gradient(135deg,#628cff,#8e62ff);
+  border-color:transparent;color:#fff;
+  box-shadow:0 12px 35px rgba(99,109,255,.25);
+}
+.btn:focus-visible,
+.theme-toggle:focus-visible,
+.logo:focus-visible{
+  outline:2px solid #7ea0ff;
+  outline-offset:3px;
+}
+
+/* shortcuts row */
+.shortcuts{
+  margin-top:56px;
+  padding-top:26px;
+  border-top:1px solid var(--line);
+  display:flex;flex-wrap:wrap;gap:9px;justify-content:center;
+}
+.shortcut{
+  font-size:12px;
+  padding:8px 12px;
+  border-radius:11px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.025);
+  color:var(--muted);
+  text-decoration:none;
+  transition:.22s;
+}
+:root[data-theme="light"] .shortcut{background:rgba(14,24,60,.03)}
+.shortcut:hover{
+  color:var(--text);
+  border-color:var(--line-strong);
+  transform:translateY(-2px);
+  background:rgba(255,255,255,.06);
+}
+:root[data-theme="light"] .shortcut:hover{background:rgba(14,24,60,.07)}
+
+/* footer */
+footer{
+  position:relative;z-index:2;
+  margin-top:34px;
+  text-align:center;
+  color:var(--muted);
+  font-size:12px;
+  opacity:.75;
+}
+footer strong{color:var(--text);opacity:.9}
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+  }
+  .particle,.cursor{display:none}
+  .kicker .dot{animation:none}
+}
+
+/* mobile */
+@media(max-width:640px){
+  body{padding-top:90px}
+  .topbar{height:56px;width:calc(100% - 24px)}
+  .wrap{padding-top:60px}
+  .code{margin:14px 0 6px}
+  .buttons .btn{flex:1 1 auto;justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<div id="particles"></div>
+<div class="cursor" id="cursor"></div>
+
+<header class="topbar">
+  <a class="logo" href="https://upekkk.github.io/">UPEK<span>.</span></a>
+  <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle colour theme" title="Toggle theme">
+    <span class="tt-dark" aria-hidden="true">🌙</span>
+    <span class="tt-light" aria-hidden="true">☀️</span>
+  </button>
+</header>
+
+<main class="wrap">
+  <span class="kicker"><span class="dot"></span> Error 404</span>
+
+  <div class="code" aria-hidden="true">404</div>
+
+  <h1>Lost in the void.</h1>
+  <p class="lead">
+    The page you tried to open doesn't exist on this profile. It might have moved, or the particles ate it.
+  </p>
+
+  <div class="path" id="pathLine" hidden>
+    <b id="pathText"></b>
+  </div>
+
+  <div class="buttons">
+    <a class="btn primary" href="https://upekkk.github.io/">← Back to profile</a>
+    <a class="btn" href="https://upekkk.github.io/#projects">See my projects</a>
+    <a class="btn" href="https://upekkk.github.io/#contact">Contact me</a>
+  </div>
+
+  <div class="shortcuts" aria-label="Popular pages">
+    <a class="shortcut" href="https://upekkk.github.io/#about">About</a>
+    <a class="shortcut" href="https://upekkk.github.io/#anime">Anime</a>
+    <a class="shortcut" href="https://upekkk.github.io/#skills">Skills</a>
+    <a class="shortcut" href="https://upekkk.github.io/#connections">Links</a>
+    <a class="shortcut" href="https://upekkk.github.io/anilist.html">AniList</a>
+  </div>
+
+  <footer>
+    <strong>UPEK.</strong> · v1.2 · Last updated September 2026
+  </footer>
+</main>
+
+<script>
+/* ---------- ambient particles ---------- */
+(function(){
+  const host = document.getElementById('particles');
+  if(!host) return;
+  const count = window.innerWidth < 640 ? 28 : 55;
+  for(let i=0;i<count;i++){
+    const p = document.createElement('i');
+    p.className = 'particle';
+    p.style.left = Math.random()*100 + '%';
+    p.style.animationDuration = (8 + Math.random()*16) + 's';
+    p.style.animationDelay = (-Math.random()*18) + 's';
+    p.style.opacity = (.15 + Math.random()*.55);
+    host.appendChild(p);
+  }
+})();
+
+/* ---------- cursor glow ---------- */
+(function(){
+  const cursor = document.getElementById('cursor');
+  if(!cursor) return;
+  if(!window.matchMedia('(pointer:fine)').matches){
+    cursor.style.display = 'none';
+    return;
+  }
+  window.addEventListener('pointermove', e=>{
+    cursor.animate(
+      { left: e.clientX + 'px', top: e.clientY + 'px' },
+      { duration: 500, fill: 'forwards' }
+    );
+  });
+})();
+
+/* ---------- theme toggle ---------- */
+(function(){
+  const root = document.documentElement;
+  const btn  = document.getElementById('themeToggle');
+  if(!btn) return;
+
+  function apply(theme){
+    root.setAttribute('data-theme', theme);
+    try{ localStorage.setItem('upek.theme', theme); }catch(e){}
+    btn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    btn.setAttribute('title',      theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+  }
+
+  apply(root.getAttribute('data-theme') || 'dark');
+  btn.addEventListener('click', ()=>{
+    const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    apply(next);
+  });
+})();
+
+/* ---------- show the missing path (works on GH Pages) ---------- */
+(function(){
+  const wrap = document.getElementById('pathLine');
+  const text = document.getElementById('pathText');
+  if(!wrap || !text) return;
+
+  // GitHub Pages 404 serves this file but keeps the original URL.
+  // We can read the requested path from location.pathname.
+  const p = location.pathname + location.search + location.hash;
+  const looksLike404 = p && p !== '/404.html' && p !== '/404';
+
+  if(looksLike404){
+    text.textContent = p;
+    wrap.hidden = false;
+  }
+})();
+
+/* ---------- keyboard: press "/" or "h" to go home ---------- */
+document.addEventListener('keydown', (e)=>{
+  if(e.target.matches('input, textarea, select')) return;
+  const k = e.key.toLowerCase();
+  if(k === '/' || k === 'h'){
+    e.preventDefault();
+    location.href = 'https://upekkk.github.io/';
+  }
+});
+</script>
+</body>
+</html>
