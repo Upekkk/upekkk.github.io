@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AniList Library — Upek</title>
+<meta name="description" content="A live, searchable browser for Upek's public AniList library.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📺</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#060812; --bg2:#0a0e1c; --panel:rgba(14,18,35,.66); --panel2:rgba(255,255,255,.03);
+  --line:rgba(255,255,255,.09); --text:#eef1fb; --muted:#8b93b3; --faint:#565f80;
+  --blue:#3db4f2; --gold:#d99a2b; --purple:#9163f0; --teal:#3fc6a4; --red:#ef5b6a; --pink:#e0609b;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes popIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+@keyframes pulseGlow{0%,100%{box-shadow:0 0 0 0 rgba(217,154,43,0)}50%{box-shadow:0 0 0 5px rgba(217,154,43,.16)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes rowIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+.fx{opacity:0;animation:fadeUp .6s cubic-bezier(.2,.7,.2,1) both}
+.fx-1{animation-delay:.02s}.fx-2{animation-delay:.09s}.fx-3{animation-delay:.16s}.fx-4{animation-delay:.23s}
+
+.homebtn{
+  display:inline-flex;align-items:center;gap:6px;color:var(--muted);text-decoration:none;font-size:13px;
+  padding:8px 13px;border:1px solid var(--line);border-radius:20px;transition:.2s;margin-bottom:22px;
+  opacity:0;animation:fadeUp .5s ease both
+}
+.homebtn:hover{color:var(--text);border-color:rgba(255,255,255,.25);background:var(--panel2);transform:translateX(-2px)}
+body{
+  background:
+    radial-gradient(900px 500px at 12% -8%,rgba(61,180,242,.10),transparent 60%),
+    radial-gradient(800px 480px at 100% 0%,rgba(145,99,240,.10),transparent 55%),
+    var(--bg);
+  color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;
+  min-height:100vh;line-height:1.5;
+}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.wrap{width:min(100% - 40px,1040px);margin:0 auto}
+a{color:inherit}
+button{font-family:inherit}
+
+/* ---- header ---- */
+header{padding:56px 0 34px;border-bottom:1px solid var(--line)}
+.eyebrow{color:var(--blue);font-size:13px;font-weight:600;margin-bottom:14px}
+header h1{font-size:clamp(32px,5vw,46px);font-weight:800;letter-spacing:-.02em;line-height:1.08;max-width:640px}
+header h1 em{font-style:normal;color:var(--blue)}
+header p{color:var(--muted);margin-top:14px;font-size:15px;max-width:520px}
+
+.loadbar{display:flex;gap:10px;margin-top:30px;flex-wrap:wrap;align-items:center}
+.loadbar input{
+  flex:1;min-width:180px;background:var(--panel2);border:1px solid var(--line);border-radius:13px;
+  padding:14px 17px;color:var(--text);font-size:15px;font-family:inherit
+}
+.loadbar input:focus{outline:none;border-color:rgba(61,180,242,.55)}
+.loadbar .at{color:var(--faint);font-size:15px;margin-right:-4px}
+.loadbtn{
+  display:flex;align-items:center;gap:9px;flex:none;border:1px solid rgba(61,180,242,.45);
+  background:linear-gradient(135deg,rgba(61,180,242,.2),rgba(145,99,240,.2));
+  color:#e4f4ff;font-size:15px;font-weight:600;padding:14px 22px;border-radius:13px;cursor:pointer;transition:.2s
+}
+.loadbtn:hover{border-color:rgba(61,180,242,.85);filter:brightness(1.12)}
+.loadbtn:disabled{opacity:.55;cursor:default}
+.spinner{width:14px;height:14px;border-radius:50%;border:2px solid rgba(228,244,255,.35);border-top-color:#e4f4ff;animation:spin .7s linear infinite;display:inline-block}
+.avatar{width:22px;height:22px;border-radius:7px;display:none;object-fit:cover}
+
+.status-line{margin-top:16px;font-size:13.5px;color:var(--muted);min-height:18px}
+.status-line.err{color:var(--red)}
+
+/* ---- stats ---- */
+.stats{display:none;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:34px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.stats.show{display:grid}
+.stats.show .stat{animation:popIn .45s cubic-bezier(.2,.7,.2,1) both}
+.stats.show .stat:nth-child(1){animation-delay:.02s}
+.stats.show .stat:nth-child(2){animation-delay:.08s}
+.stats.show .stat:nth-child(3){animation-delay:.14s}
+.stats.show .stat:nth-child(4){animation-delay:.2s}
+
+/* ---- page nav ---- */
+.pagenav{display:none;gap:8px;margin-top:28px;border-bottom:1px solid var(--line)}
+.pagenav.show{display:flex;animation:fadeUp .4s ease both}
+.pagetab{
+  background:none;border:none;color:var(--muted);font-size:14px;font-weight:600;padding:12px 4px;
+  cursor:pointer;position:relative;font-family:inherit;margin-right:22px
+}
+.pagetab .mono{color:var(--faint);font-weight:500;font-size:12px;margin-left:4px}
+.pagetab.active{color:var(--text)}
+.pagetab.active:after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--blue)}
+.page{display:none}
+.page.active{display:block;animation:fadeUp .35s cubic-bezier(.2,.7,.2,1) both}
+.stat{background:var(--bg2);padding:20px 18px}
+.stat .n{font-size:26px;font-weight:700}
+.stat .l{color:var(--muted);font-size:12.5px;margin-top:5px}
+
+/* ---- toolbar ---- */
+.toolbar{display:none;margin-top:34px;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.toolbar.show{display:flex}
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tab{
+  border:1px solid var(--line);background:var(--panel2);color:var(--muted);font-size:13px;font-weight:500;
+  padding:9px 14px;border-radius:20px;cursor:pointer;transition:.18s;display:flex;align-items:center;gap:7px
+}
+.tab .dot{width:7px;height:7px;border-radius:50%;background:currentColor;opacity:.7}
+.tab:hover{color:var(--text);border-color:rgba(255,255,255,.2)}
+.tab.active{color:var(--bg);background:var(--text);border-color:var(--text)}
+.toolbar-right{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.toolbar select,.toolbar .search{
+  background:var(--panel2);border:1px solid var(--line);border-radius:11px;color:var(--text);
+  font-size:13.5px;padding:10px 13px;font-family:inherit
+}
+.toolbar select:focus,.toolbar .search:focus{outline:none;border-color:rgba(61,180,242,.5)}
+.viewtoggle{display:flex;border:1px solid var(--line);border-radius:11px;overflow:hidden}
+.viewtoggle button{background:var(--panel2);color:var(--muted);border:none;padding:10px 13px;cursor:pointer;font-size:13px}
+.viewtoggle button.active{background:rgba(61,180,242,.18);color:#cdeaff}
+
+/* ---- list ---- */
+main{padding:30px 0 90px}
+.count-line{color:var(--faint);font-size:12.5px;margin-bottom:12px;font-family:'JetBrains Mono',monospace}
+.list{display:flex;flex-direction:column;gap:1px}
+.row{
+  display:grid;grid-template-columns:28px 44px 1fr auto auto auto;gap:14px;align-items:center;
+  padding:12px 10px;border-left:2px solid transparent;border-radius:8px;transition:background .15s;
+  animation:rowIn .35s cubic-bezier(.2,.7,.2,1) both
+}
+.row:hover{background:var(--panel2)}
+.row .n{color:var(--faint);font-size:12px;font-family:'JetBrains Mono',monospace}
+.row .cover{width:44px;height:60px;border-radius:6px;object-fit:cover;background:var(--panel2);flex:none}
+.row .title-block{min-width:0}
+.row .t{font-size:14.5px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row .meta{color:var(--muted);font-size:12px;margin-top:3px;display:flex;gap:8px;flex-wrap:wrap}
+.row .score{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);text-align:right;min-width:34px}
+.row .score.has{color:var(--gold)}
+.row .actions{display:flex;gap:4px}
+.row .actions button,.row .actions a{
+  background:none;border:none;color:var(--faint);cursor:pointer;font-size:14px;padding:6px 8px;
+  border-radius:8px;transition:.15s;text-decoration:none;display:flex
+}
+.row .actions button:hover,.row .actions a:hover{color:var(--text);background:rgba(255,255,255,.07)}
+
+/* status accent colors */
+.s-CURRENT{border-left-color:var(--blue)}
+.s-COMPLETED{border-left-color:var(--gold)}
+.s-PLANNING{border-left-color:var(--purple)}
+.s-PAUSED{border-left-color:var(--teal)}
+.s-DROPPED{border-left-color:var(--red)}
+.s-REPEATING{border-left-color:var(--pink)}
+
+/* ---- grid view ---- */
+.grid-view{display:none;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:16px}
+.grid-view.show{display:grid}
+.gcard{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel2);transition:transform .2s,border-color .2s;animation:popIn .35s cubic-bezier(.2,.7,.2,1) both}
+.gcard:hover{border-color:rgba(255,255,255,.25);transform:translateY(-3px)}
+.gcard .cover{width:100%;aspect-ratio:2/3;object-fit:cover;display:block;background:var(--panel)}
+.gcard .info{padding:10px 11px 12px;border-top:3px solid transparent}
+.gcard .t{font-size:12.5px;font-weight:500;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.gcard .meta{color:var(--muted);font-size:11px;margin-top:6px;font-family:'JetBrains Mono',monospace}
+
+.empty{padding:60px 20px;text-align:center;color:var(--muted)}
+.empty strong{display:block;color:var(--text);font-size:16px;margin-bottom:8px;font-weight:600}
+
+/* ---- airing ---- */
+.airing-row{
+  display:grid;grid-template-columns:44px 1fr auto;gap:14px;align-items:center;
+  padding:14px 12px;border-radius:12px;border:1px solid var(--line);margin-bottom:8px;background:var(--panel2);
+  animation:rowIn .4s cubic-bezier(.2,.7,.2,1) both
+}
+.airing-row .cover{width:44px;height:60px;border-radius:6px;object-fit:cover;flex:none;background:var(--panel)}
+.airing-row .t{font-size:14.5px;font-weight:500}
+.airing-row .meta{color:var(--muted);font-size:12px;margin-top:4px}
+.airing-row .cd{text-align:right}
+.airing-row .cd-time{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:600;color:var(--blue)}
+.airing-row .cd-date{color:var(--faint);font-size:11px;margin-top:3px}
+.airing-row.soon{animation:rowIn .4s cubic-bezier(.2,.7,.2,1) both,pulseGlow 2.4s ease-in-out infinite}
+.airing-row.soon .cd-time{color:var(--gold)}
+
+/* ---- activity ---- */
+.activity-row{display:grid;grid-template-columns:38px 1fr auto;gap:13px;align-items:center;padding:11px 10px;border-radius:10px;animation:rowIn .35s cubic-bezier(.2,.7,.2,1) both}
+.activity-row:hover{background:var(--panel2)}
+.activity-row .cover{width:38px;height:52px;border-radius:6px;object-fit:cover;background:var(--panel2)}
+.activity-row .t{font-size:14px}
+.activity-row .t b{font-weight:600}
+.activity-row .meta{color:var(--faint);font-size:11.5px;margin-top:3px;font-family:'JetBrains Mono',monospace}
+
+.exportbar{display:none;gap:10px;margin-top:26px;padding-top:26px;border-top:1px solid var(--line);flex-wrap:wrap}
+.exportbar.show{display:flex}
+.exportbar button{
+  background:var(--panel2);border:1px solid var(--line);border-radius:11px;color:var(--text);
+  font-size:13px;padding:11px 16px;cursor:pointer;transition:.18s;display:flex;align-items:center;gap:8px
+}
+.exportbar button:hover{border-color:rgba(61,180,242,.5)}
+
+footer{border-top:1px solid var(--line);padding:26px 0;color:var(--faint);font-size:12.5px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+footer a{color:var(--muted);text-decoration:none}
+footer a:hover{color:var(--text)}
+
+@media(max-width:640px){
+  .row{grid-template-columns:22px 38px 1fr auto;gap:10px}
+  .row .meta span:not(:first-child){display:none}
+  .row .actions .al-open{display:none}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .toolbar{align-items:stretch}
+  .toolbar-right{width:100%}
+  .toolbar .search{flex:1}
+  .airing-row{grid-template-columns:36px 1fr auto}
+  .airing-row .cover{width:36px;height:50px}
+  .pagenav{overflow-x:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <a class="homebtn" href="index.html">← Home</a>
+    <div class="eyebrow fx fx-1">📺 ANILIST LIBRARY</div>
+    <h1 class="fx fx-2">Everything I've watched, <em>searchable</em>.</h1>
+    <p class="fx fx-3">Pulled live from AniList's public API — no login, no scraping, just my own list rendered properly with filters, sorting and export.</p>
+
+    <div class="loadbar fx fx-4">
+      <span class="at">@</span>
+      <input type="text" id="username" value="Upek" placeholder="AniList username" aria-label="AniList username">
+      <img class="avatar" id="avatar" alt="">
+      <button class="loadbtn" id="loadBtn"><span>⚡</span> Load library</button>
+    </div>
+    <p class="status-line" id="statusLine"></p>
+  </header>
+
+  <div class="stats" id="stats">
+    <div class="stat"><div class="n mono" id="statTotal">—</div><div class="l">Titles tracked</div></div>
+    <div class="stat"><div class="n mono" id="statEpisodes">—</div><div class="l">Episodes watched</div></div>
+    <div class="stat"><div class="n mono" id="statScore">—</div><div class="l">Mean score</div></div>
+    <div class="stat"><div class="n mono" id="statDays">—</div><div class="l">Days watched</div></div>
+  </div>
+
+  <div class="pagenav" id="pagenav">
+    <button class="pagetab active" data-page="library">Library</button>
+    <button class="pagetab" data-page="airing">Airing <span class="mono" id="airingCount"></span></button>
+    <button class="pagetab" data-page="activity">Activity</button>
+  </div>
+
+  <div class="toolbar" id="toolbar">
+    <div class="tabs" id="tabs"></div>
+    <div class="toolbar-right">
+      <input class="search" id="search" type="text" placeholder="Search this list…">
+      <select id="sort">
+        <option value="title">Title A–Z</option>
+        <option value="score">Score, high to low</option>
+        <option value="progress">Progress, high to low</option>
+        <option value="updated">Recently updated</option>
+      </select>
+      <div class="viewtoggle">
+        <button id="viewList" class="active" title="List view">☰</button>
+        <button id="viewGrid" title="Grid view">▦</button>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <section id="page-library" class="page active">
+      <p class="count-line" id="countLine"></p>
+      <div class="list" id="list"></div>
+      <div class="grid-view" id="gridView"></div>
+
+      <div class="exportbar" id="exportbar">
+        <button id="reloadBtn">🔄 Reload from AniList</button>
+        <button id="downloadTxt">↓ Download .txt</button>
+        <button id="downloadJson">↓ Download .json</button>
+      </div>
+    </section>
+
+    <section id="page-airing" class="page">
+      <p class="count-line" id="airingCountLine"></p>
+      <div class="airing-list" id="airingList"></div>
+    </section>
+
+    <section id="page-activity" class="page">
+      <p class="count-line" id="activityCountLine"></p>
+      <div class="activity-list" id="activityList"></div>
+    </section>
+  </main>
+
+  <footer>
+    <span>Built for anilist.co/user/Upek — data refreshes on demand, nothing is stored.</span>
+    <a href="https://anilist.co" target="_blank" rel="noopener">Open AniList ↗</a>
+  </footer>
+</div>
+
+<script>
+const STATUS_META={
+  CURRENT:{label:'Watching',color:'var(--blue)'},
+  COMPLETED:{label:'Completed',color:'var(--gold)'},
+  PLANNING:{label:'Planning',color:'var(--purple)'},
+  PAUSED:{label:'Paused',color:'var(--teal)'},
+  DROPPED:{label:'Dropped',color:'var(--red)'},
+  REPEATING:{label:'Rewatching',color:'var(--pink)'}
+};
+
+const els={
+  username:document.getElementById('username'),
+  avatar:document.getElementById('avatar'),
+  loadBtn:document.getElementById('loadBtn'),
+  statusLine:document.getElementById('statusLine'),
+  stats:document.getElementById('stats'),
+  statTotal:document.getElementById('statTotal'),
+  statEpisodes:document.getElementById('statEpisodes'),
+  statScore:document.getElementById('statScore'),
+  statDays:document.getElementById('statDays'),
+  toolbar:document.getElementById('toolbar'),
+  tabs:document.getElementById('tabs'),
+  search:document.getElementById('search'),
+  sort:document.getElementById('sort'),
+  viewList:document.getElementById('viewList'),
+  viewGrid:document.getElementById('viewGrid'),
+  countLine:document.getElementById('countLine'),
+  list:document.getElementById('list'),
+  gridView:document.getElementById('gridView'),
+  exportbar:document.getElementById('exportbar'),
+  reloadBtn:document.getElementById('reloadBtn'),
+  downloadTxt:document.getElementById('downloadTxt'),
+  downloadJson:document.getElementById('downloadJson'),
+  pagenav:document.getElementById('pagenav'),
+  airingCount:document.getElementById('airingCount'),
+  airingCountLine:document.getElementById('airingCountLine'),
+  airingList:document.getElementById('airingList'),
+  activityCountLine:document.getElementById('activityCountLine'),
+  activityList:document.getElementById('activityList')
+};
+
+let allEntries=[];
+let airingEntries=[];
+let activities=[];
+let activeStatus='ALL';
+let activePage='library';
+let view='list';
+let lastUsername='';
+let countdownTimer=null;
+
+function titleOf(m){return m.title.english||m.title.romaji;}
+
+async function load(){
+  const name=els.username.value.trim();
+  if(!name){els.statusLine.textContent='Enter a username first.';els.statusLine.classList.add('err');return;}
+  lastUsername=name;
+  els.loadBtn.disabled=true;
+  const originalLabel=els.loadBtn.innerHTML;
+  els.loadBtn.innerHTML='<span class="spinner"></span> Loading…';
+  els.statusLine.classList.remove('err');
+  els.statusLine.textContent='Loading @'+name+'\u2019s library\u2026';
+
+  const query=`query($name:String){
+    User(name:$name){ id name avatar{large} statistics{ anime{ count episodesWatched meanScore minutesWatched } } }
+    MediaListCollection(userName:$name, type:ANIME){
+      lists{ entries{
+        status score progress updatedAt
+        media{ id episodes format genres title{ romaji english } coverImage{ large } status
+          nextAiringEpisode{ airingAt timeUntilAiring episode }
+        }
+      }}
+    }
+  }`;
+
+  try{
+    const res=await fetch('https://graphql.anilist.co',{
+      method:'POST',
+      headers:{'Content-Type':'application/json',Accept:'application/json'},
+      body:JSON.stringify({query,variables:{name}})
+    });
+    const json=await res.json();
+    if(json.errors)throw new Error(json.errors[0].message||'AniList returned an error.');
+
+    const user=json.data.User;
+    const seen=new Set();
+    allEntries=[];
+    json.data.MediaListCollection.lists.forEach(l=>l.entries.forEach(e=>{
+      if(seen.has(e.media.id))return;
+      seen.add(e.media.id);
+      allEntries.push(e);
+    }));
+
+    airingEntries=allEntries.filter(e=>e.media.nextAiringEpisode)
+      .sort((a,b)=>a.media.nextAiringEpisode.timeUntilAiring-b.media.nextAiringEpisode.timeUntilAiring);
+
+    if(user.avatar&&user.avatar.large){els.avatar.src=user.avatar.large;els.avatar.style.display='block';}
+    const st=user.statistics.anime;
+    els.statTotal.textContent=st.count;
+    els.statEpisodes.textContent=st.episodesWatched;
+    els.statScore.textContent=st.meanScore?st.meanScore.toFixed(1):'—';
+    els.statDays.textContent=(st.minutesWatched/1440).toFixed(1);
+    els.stats.classList.add('show');
+    els.pagenav.classList.add('show');
+    els.exportbar.classList.add('show');
+    els.airingCount.textContent=airingEntries.length?'('+airingEntries.length+')':'';
+
+    buildTabs();
+    render();
+    renderAiring();
+    setPage(activePage);
+    els.statusLine.textContent=allEntries.length+' anime loaded from @'+name+'.';
+
+    loadActivities(user.id,name);
+  }catch(err){
+    els.statusLine.classList.add('err');
+    els.statusLine.textContent="Couldn't reach AniList — the username may be wrong/private, or this preview is sandboxed against outside network requests. Open the downloaded file directly in a browser to use it.";
+  }finally{
+    els.loadBtn.disabled=false;
+    els.loadBtn.innerHTML=originalLabel;
+  }
+}
+
+async function loadActivities(userId,name){
+  els.activityCountLine.textContent='Loading recent activity…';
+  const query=`query($userId:Int){
+    Page(page:1, perPage:40){
+      activities(userId:$userId, sort:ID_DESC, type:ANIME_LIST){
+        ... on ListActivity{ id status progress createdAt media{ id title{romaji english} coverImage{large} } }
+      }
+    }
+  }`;
+  try{
+    const res=await fetch('https://graphql.anilist.co',{
+      method:'POST',
+      headers:{'Content-Type':'application/json',Accept:'application/json'},
+      body:JSON.stringify({query,variables:{userId}})
+    });
+    const json=await res.json();
+    if(json.errors)throw new Error(json.errors[0].message);
+    activities=(json.data.Page.activities||[]).filter(a=>a&&a.media);
+    renderActivity();
+  }catch(err){
+    els.activityCountLine.textContent="Couldn't load activity for @"+name+".";
+  }
+}
+
+function buildTabs(){
+  const counts={ALL:allEntries.length};
+  allEntries.forEach(e=>{counts[e.status]=(counts[e.status]||0)+1;});
+  const order=['ALL','CURRENT','COMPLETED','PLANNING','PAUSED','DROPPED','REPEATING'];
+  els.tabs.innerHTML='';
+  order.forEach(key=>{
+    if(key!=='ALL'&&!counts[key])return;
+    const meta=key==='ALL'?{label:'All'}:STATUS_META[key];
+    const btn=document.createElement('button');
+    btn.className='tab'+(key===activeStatus?' active':'');
+    btn.dataset.status=key;
+    btn.innerHTML=(key==='ALL'?'':'<span class="dot" style="background:'+meta.color+'"></span>')+meta.label+' <span class="mono">'+(counts[key]||0)+'</span>';
+    btn.addEventListener('click',()=>{activeStatus=key;buildTabs();render();});
+    els.tabs.appendChild(btn);
+  });
+}
+
+function currentSet(){
+  let set=activeStatus==='ALL'?allEntries.slice():allEntries.filter(e=>e.status===activeStatus);
+  const q=els.search.value.trim().toLowerCase();
+  if(q)set=set.filter(e=>titleOf(e.media).toLowerCase().includes(q));
+  const sort=els.sort.value;
+  if(sort==='title')set.sort((a,b)=>titleOf(a.media).localeCompare(titleOf(b.media)));
+  else if(sort==='score')set.sort((a,b)=>(b.score||0)-(a.score||0));
+  else if(sort==='progress')set.sort((a,b)=>(b.progress||0)-(a.progress||0));
+  else if(sort==='updated')set.sort((a,b)=>(b.updatedAt||0)-(a.updatedAt||0));
+  return set;
+}
+
+function render(){
+  const set=currentSet();
+  els.countLine.textContent=set.length+' / '+allEntries.length+' shown';
+  els.list.innerHTML='';
+  els.gridView.innerHTML='';
+
+  if(!set.length){
+    const empty=document.createElement('div');
+    empty.className='empty';
+    empty.innerHTML='<strong>Nothing matches.</strong>Try a different status tab or clear the search.';
+    (view==='list'?els.list:els.gridView).appendChild(empty);
+    return;
+  }
+
+  set.forEach((e,i)=>{
+    const m=e.media;
+    const t=titleOf(m);
+    const delay=Math.min(i,14)*25+'ms';
+    if(view==='list'){
+      const row=document.createElement('div');
+      row.className='row s-'+e.status;
+      row.style.animationDelay=delay;
+      const cover=m.coverImage&&m.coverImage.large?'<img class="cover" src="'+m.coverImage.large+'" alt="" loading="lazy">':'<div class="cover"></div>';
+      row.innerHTML=`
+        <span class="n mono">${i+1}</span>
+        ${cover}
+        <div class="title-block">
+          <div class="t">${t}</div>
+          <div class="meta"><span>${STATUS_META[e.status]?STATUS_META[e.status].label:e.status}</span><span>${e.progress||0}/${m.episodes||'?'} ep</span><span>${m.format||''}</span></div>
+        </div>
+        <div class="score mono ${e.score?'has':''}">${e.score?e.score:'—'}</div>
+        <div class="actions">
+          <button class="al-copy" title="Copy title" data-title="${t.replace(/"/g,'&quot;')}">📋</button>
+          <a class="al-open" href="https://anilist.co/anime/${m.id}" target="_blank" rel="noopener" title="Open on AniList">🔍</a>
+        </div>`;
+      row.querySelector('.al-copy').addEventListener('click',ev=>{
+        const btn=ev.currentTarget;
+        navigator.clipboard?.writeText(btn.dataset.title).catch(()=>{});
+        btn.textContent='✓';setTimeout(()=>btn.textContent='📋',900);
+      });
+      els.list.appendChild(row);
+    }else{
+      const card=document.createElement('a');
+      card.className='gcard';
+      card.style.animationDelay=delay;
+      card.href='https://anilist.co/anime/'+m.id;
+      card.target='_blank';card.rel='noopener';
+      const cover=m.coverImage&&m.coverImage.large?'<img class="cover" src="'+m.coverImage.large+'" alt="" loading="lazy">':'<div class="cover"></div>';
+      card.innerHTML=`${cover}<div class="info" style="border-top-color:${STATUS_META[e.status]?STATUS_META[e.status].color:'transparent'}"><div class="t">${t}</div><div class="meta">${e.progress||0}/${m.episodes||'?'} · ${e.score||'—'}</div></div>`;
+      els.gridView.appendChild(card);
+    }
+  });
+}
+
+function setView(v){
+  view=v;
+  els.viewList.classList.toggle('active',v==='list');
+  els.viewGrid.classList.toggle('active',v==='grid');
+  els.list.classList.toggle('show',v==='list');
+  els.gridView.classList.toggle('show',v==='grid');
+  render();
+}
+
+/* ---- airing ---- */
+function formatCountdown(ms){
+  if(ms<=0)return'Aired';
+  const mins=Math.floor(ms/60000);
+  const d=Math.floor(mins/1440), h=Math.floor((mins%1440)/60), m=mins%60;
+  if(d>0)return d+'d '+h+'h';
+  if(h>0)return h+'h '+m+'m';
+  return m+'m';
+}
+
+function renderAiring(){
+  els.airingList.innerHTML='';
+  els.airingCountLine.textContent=airingEntries.length+' upcoming episode'+(airingEntries.length===1?'':'s')+' from your list';
+  if(!airingEntries.length){
+    els.airingList.innerHTML='<div class="empty"><strong>Nothing airing right now.</strong>Everything on your list is finished, unreleased, or you haven\u2019t loaded a library yet.</div>';
+    return;
+  }
+  airingEntries.forEach((e,i)=>{
+    const m=e.media, na=m.nextAiringEpisode;
+    const t=titleOf(m);
+    const airDate=new Date(na.airingAt*1000);
+    const row=document.createElement('div');
+    row.className='airing-row';
+    row.style.animationDelay=Math.min(i,14)*30+'ms';
+    row.dataset.airingat=na.airingAt*1000;
+    const cover=m.coverImage&&m.coverImage.large?'<img class="cover" src="'+m.coverImage.large+'" alt="" loading="lazy">':'<div class="cover"></div>';
+    row.innerHTML=`
+      ${cover}
+      <div>
+        <div class="t">${t}</div>
+        <div class="meta">Episode ${na.episode} · ${STATUS_META[e.status]?STATUS_META[e.status].label:e.status}</div>
+      </div>
+      <div class="cd">
+        <div class="cd-time mono">${formatCountdown(na.airingAt*1000-Date.now())}</div>
+        <div class="cd-date">${airDate.toLocaleString(undefined,{weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})}</div>
+      </div>`;
+    els.airingList.appendChild(row);
+  });
+  tickCountdowns();
+}
+
+function tickCountdowns(){
+  document.querySelectorAll('.airing-row').forEach(row=>{
+    const ms=Number(row.dataset.airingat)-Date.now();
+    const cd=row.querySelector('.cd-time');
+    if(cd)cd.textContent=formatCountdown(ms);
+    row.classList.toggle('soon',ms>0&&ms<24*3600*1000);
+  });
+}
+if(!countdownTimer)countdownTimer=setInterval(tickCountdowns,60000);
+
+/* ---- activity ---- */
+function timeAgo(ts){
+  const s=Math.floor(Date.now()/1000)-ts;
+  if(s<60)return'just now';
+  if(s<3600)return Math.floor(s/60)+'m ago';
+  if(s<86400)return Math.floor(s/3600)+'h ago';
+  if(s<2592000)return Math.floor(s/86400)+'d ago';
+  return new Date(ts*1000).toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'});
+}
+
+function renderActivity(){
+  els.activityList.innerHTML='';
+  els.activityCountLine.textContent=activities.length+' recent update'+(activities.length===1?'':'s');
+  if(!activities.length){
+    els.activityList.innerHTML='<div class="empty"><strong>No recent activity.</strong>Progress updates and status changes will show up here once you\u2019ve loaded a library.</div>';
+    return;
+  }
+  activities.forEach(a=>{
+    const m=a.media;
+    const t=titleOf(m);
+    const row=document.createElement('a');
+    row.className='activity-row';
+    row.href='https://anilist.co/anime/'+m.id;row.target='_blank';row.rel='noopener';
+    const cover=m.coverImage&&m.coverImage.large?'<img class="cover" src="'+m.coverImage.large+'" alt="" loading="lazy">':'<div class="cover"></div>';
+    const statusText=(a.status||'').replace(/^\w/,c=>c.toUpperCase());
+    row.innerHTML=`${cover}<div><div class="t">${statusText}${a.progress?' '+a.progress:''} of <b>${t}</b></div><div class="meta">${timeAgo(a.createdAt)}</div></div>`;
+    els.activityList.appendChild(row);
+  });
+}
+
+/* ---- page switching ---- */
+function setPage(p){
+  activePage=p;
+  document.querySelectorAll('.pagetab').forEach(b=>b.classList.toggle('active',b.dataset.page===p));
+  document.querySelectorAll('.page').forEach(sec=>sec.classList.toggle('active',sec.id==='page-'+p));
+  els.toolbar.classList.toggle('show',p==='library'&&els.pagenav.classList.contains('show'));
+}
+document.querySelectorAll('.pagetab').forEach(b=>b.addEventListener('click',()=>setPage(b.dataset.page)));
+
+els.loadBtn.addEventListener('click',load);
+els.username.addEventListener('keydown',e=>{if(e.key==='Enter')load();});
+els.reloadBtn.addEventListener('click',load);
+els.search.addEventListener('input',render);
+els.sort.addEventListener('change',render);
+els.viewList.addEventListener('click',()=>setView('list'));
+els.viewGrid.addEventListener('click',()=>setView('grid'));
+
+els.downloadTxt.addEventListener('click',()=>{
+  const set=currentSet();
+  if(!set.length)return;
+  const text=set.map((e,i)=>(i+1)+'. '+titleOf(e.media)+(e.score?' — '+e.score:'')).join('\n');
+  const blob=new Blob([text],{type:'text/plain'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);a.download=(lastUsername||'anilist')+'-library.txt';a.click();
+  URL.revokeObjectURL(a.href);
+});
+els.downloadJson.addEventListener('click',()=>{
+  const set=currentSet();
+  if(!set.length)return;
+  const data=set.map(e=>({title:titleOf(e.media),status:e.status,score:e.score,progress:e.progress,episodes:e.media.episodes,format:e.media.format,genres:e.media.genres,anilistId:e.media.id}));
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);a.download=(lastUsername||'anilist')+'-library.json';a.click();
+  URL.revokeObjectURL(a.href);
+});
+
+setView('list');
+setPage('library');
+</script>
+</body>
+</html>
